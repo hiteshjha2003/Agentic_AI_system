@@ -89,12 +89,17 @@ def ingest_screenshot(image_bytes: bytes, context: str = "") -> Dict[str, Any]:
 # Audio Ingestion
 # ---------------------------------------------------
 
-def ingest_audio(audio_bytes: bytes, participants: str = "") -> Dict[str, Any]:
+def ingest_audio(
+    audio_bytes: bytes, 
+    filename: str = "audio.wav", 
+    content_type: str = "audio/wav",
+    participants: str = ""
+) -> Dict[str, Any]:
     try:
         url = f"{BACKEND_URL}/ingest/audio"
 
         files = {
-            "file": ("audio.wav", audio_bytes, "audio/wav")
+            "file": (filename, audio_bytes, content_type)
         }
 
         data = {

@@ -32,21 +32,66 @@ class AudioProcessor:
 
         full_text = transcription_result["transcription"]
 
-        # 2. Simple heuristic action extraction (kept from before)
-        action_items = self._extract_action_heuristics(full_text)
+        # 2. Intelligent Analysis with SambaNova (Replaces simple heuristics)
+        analysis = await self._analyze_meeting_with_llm(full_text, participants)
 
         return {
             "transcription": full_text,
-            "segments": [],  # Whisper-Large-v3 json does not give segments by default
-            "action_items": action_items,
-            "duration": 0,   # not returned by SambaNova
+            "summary": analysis.get("summary", ""),
+            "action_items": analysis.get("action_items", []),
             "metadata": {
                 "filename": filename,
                 "word_count": len(full_text.split()),
                 "language": transcription_result.get("language"),
-                "provider": "SambaNova Whisper-Large-v3"
+                "provider": "SambaNova Whisper-Large-v3 + Llama-3"
             }
         }
+
+    async def _analyze_meeting_with_llm(
+        self,
+        text: str,
+        participants: List[str]
+    ) -> Dict[str, Any]:
+        """Use SambaNova LLM to summarize and extract actions."""
+        
+        prompt = f"""Analyze this meeting transcript. 
+Participants: {', '.join(participants) if participants else 'Unknown'}
+
+Transcript:
+{text[:4000]} # Limit to 4k tokens for safety
+
+Provide:
+1. A concise 3-sentence summary of the meeting.
+2. A list of specific action items, each with an assignee if possible.
+
+Format as JSON:
+{{
+  "summary": "...",
+  "action_items": [
+    {{"text": "...", "assignee": "..."}},
+    ...
+  ]
+}}
+"""
+        try:
+            # Use the chat model for structured extraction
+            response = await self.sambanova.client.chat.completions.create(
+                model=self.sambanova.models["chat"],
+                messages=[
+                    {"role": "system", "content": "You are a professional meeting assistant. Extract structured data in JSON."},
+                    {"role": "user", "content": prompt}
+                ],
+                response_format={"type": "json_object"}
+            )
+            import json
+            return json.loads(response.choices[0].message.content)
+        except Exception as e:
+            print(f"LLM Audio Analysis failed: {e}")
+            # Fallback to heuristics
+            return {
+                "summary": "Meeting transcript processed. Heuristic extraction used.",
+                "action_items": self._extract_action_heuristics(text)
+            }
 
     def _extract_action_heuristics(self, text: str) -> List[Dict[str, Any]]:
         """Same simple heuristics as before."""

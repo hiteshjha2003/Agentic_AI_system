@@ -124,6 +124,24 @@ if uploaded:
                             st.markdown("[No readable text found]")
 
                         # -------------------------------
+                        # Detailed Explanation
+                        # -------------------------------
+                        detailed = analysis.get("detailed_explanation") or vision.get("detailed_explanation")
+                        if detailed:
+                            st.subheader("📖 Detailed Explanation")
+                            st.markdown(detailed)
+                            
+                        # -------------------------------
+                        # Architectural Components
+                        # -------------------------------
+                        components = analysis.get("architectural_components") or vision.get("architectural_components")
+                        if components:
+                            st.subheader("🏗️ Architectural Components")
+                            cols = st.columns(min(len(components), 3))
+                            for i, comp in enumerate(components):
+                                cols[i % 3].info(comp)
+
+                        # -------------------------------
                         # Layout Description
                         # -------------------------------
                         st.subheader("🖼️ Layout & Visual Description")

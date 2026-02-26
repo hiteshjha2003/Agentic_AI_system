@@ -1,16 +1,16 @@
-# backend/app/api/routes/ingest.py
-from fastapi import APIRouter, UploadFile, File, Query ,app
-from typing import Optional
+from fastapi import APIRouter, UploadFile, File, Query, HTTPException
+from typing import Optional, Dict, Any
 import uuid
 from app.models.schemas import IngestedContext, IngestionType
 import json
 
 
-from app.main import services  # Import services from main (or better: use Depends later)
+# Use a service registry or global variable that will be populated later
+services = {}
 
 router = APIRouter(prefix="/ingest", tags=["ingestion"])
 
-@app.post("/ingest/screenshot")
+@router.post("/screenshot")
 
 async def ingest_screenshot(
     file: UploadFile = File(...),
@@ -59,4 +59,65 @@ async def ingest_screenshot(
         "analysis": vision_result,
         "extracted_text": content_str,
         "status": "processed"
+    }
+
+@router.post("/audio")
+async def ingest_audio(
+    file: UploadFile = File(...),
+    workspace_id: str = "default",
+    participants: Optional[str] = None
+):
+    """Process meeting audio for transcription and actions."""
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="Filename missing")
+        
+    content_bytes = await file.read()
+    print(f"📊 [Audio Ingest] Received file: {file.filename} ({len(content_bytes)} bytes)")
+    
+    if not content_bytes:
+        raise HTTPException(status_code=400, detail="Empty audio file")
+        
+    participant_list = participants.split(",") if participants else []
+    
+    try:
+        audio_result = await services["audio"].process_meeting_audio(
+            audio_bytes=content_bytes,
+            filename=file.filename,
+            participants=participant_list
+        )
+    except Exception as e:
+        # Detailed logging for the terminal
+        import traceback
+        error_type = type(e).__name__
+        print(f"❌ [Audio Ingest] {error_type}: {str(e)}")
+        traceback.print_exc()
+        
+        error_msg = str(e)
+        if "BadRequestError" in error_type or "BadRequestError" in error_msg:
+             raise HTTPException(status_code=400, detail=f"SambaNova rejected audio: {error_msg}")
+        raise HTTPException(status_code=500, detail=f"Audio Service Error: {error_msg}")
+    
+    # Store in context if needed
+    ingested = IngestedContext(
+        type=IngestionType.AUDIO,
+        source=file.filename,
+        content=audio_result.get("transcription", ""),
+        metadata={
+            "action_items": audio_result.get("action_items", []),
+            "meeting_summary": audio_result.get("summary", ""),
+            "participants": participant_list
+        }
+    )
+    
+    # Optional: create embedding for the transcript
+    if ingested.content:
+        await services["sambanova"].create_embedding(ingested.content)
+
+    return {
+        "id": ingested.id,
+        "status": "processed",
+        "analysis": audio_result,
+        "transcription": audio_result.get("transcription"),
+        "action_items": audio_result.get("action_items"),
+        "summary": audio_result.get("summary")
     }

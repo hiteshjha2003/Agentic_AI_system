@@ -1,5 +1,6 @@
 # backend/app/services/memory/conversation_store.py
 import chromadb
+import hashlib
 from typing import List, Dict, Any, Optional
 from app.config import get_settings
 from app.services.sambanova_client import SambaNovaOrchestrator

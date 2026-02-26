@@ -43,16 +43,20 @@ class VisionProcessor:
 
             # Structured JSON prompt
             prompt = f"""
-Analyze this screenshot from {source}.
+Analyze this screenshot from {source} in detail. 
+If it is a flowchart, architectural diagram, or UI design, provide a deep technical breakdown.
+
 Context: {nearby_code or 'none'}.
 
 Return **ONLY valid JSON** (no markdown, no extra text) with these exact keys:
 {{
   "extracted_text": "All visible text from the image, line by line",
+  "detailed_explanation": "Provide a comprehensive technical explanation of the image content, specifically explaining logic, connections, and architecture if visible.",
   "layout_description": "Describe visual layout, UI elements, colors, structure",
+  "architectural_components": ["Component 1", "Component 2"],
   "issue_type": "bug / performance / UI / syntax / crash / other / none",
   "severity": "low / medium / high / critical / none",
-  "hypotheses": ["Possible cause or explanation 1", "Possible cause or explanation 2"]
+  "hypotheses": ["Possible technical cause 1", "Possible technical cause 2"]
 }}
 """
 
@@ -72,8 +76,8 @@ Return **ONLY valid JSON** (no markdown, no extra text) with these exact keys:
                                     ]
                                 }
                             ],
-                            max_tokens=1024,
-                            temperature=0.2
+                            max_tokens=2048,
+                            temperature=0.1
                         ),
                         timeout=120
                     )
@@ -99,11 +103,12 @@ Return **ONLY valid JSON** (no markdown, no extra text) with these exact keys:
                 "status": "success",
                 "source": source,
                 "vision_analysis": parsed,
-                "combined_extracted_text": str(parsed.get("extracted_text", "")),  # force string
-                "detected_language": parsed.get("language", "unknown"),
+                "combined_extracted_text": str(parsed.get("extracted_text", "")),
+                "detailed_explanation": parsed.get("detailed_explanation", ""),
+                "architectural_components": parsed.get("architectural_components", []),
                 "issue_classification": {
-                    "type": parsed.get("issue_type", "unknown"),
-                    "severity": parsed.get("severity", "unknown")
+                    "type": parsed.get("issue_type", "none"),
+                    "severity": parsed.get("severity", "none")
                 },
                 "hypotheses": parsed.get("hypotheses", []),
                 "bytes_size": bytes_size

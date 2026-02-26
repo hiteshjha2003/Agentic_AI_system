@@ -36,6 +36,10 @@ class IngestedContext(BaseModel):
     timestamp: datetime = Field(default_factory=datetime.utcnow)
     embedding_id: Optional[str] = None
 
+class CodebaseIngestRequest(BaseModel):
+    repo_path: str
+    workspace_id: str = "default"
+
 class AnalysisRequest(BaseModel):
     query: str
     context_ids: List[str] = []     # Specific contexts to include
@@ -47,7 +51,8 @@ class AnalysisRequest(BaseModel):
 class SuggestedAction(BaseModel):
     action_type: Literal[
         "edit", "create", "delete", "test", "pr_comment", "slack_notify",
-        "edit_file", "create_test", "create_pr_comment"   # ← add raw tool names
+        "edit_file", "create_test", "create_pr_comment", "search_codebase",
+        "optimize", "explain", "refactor", "create_file"
     ]
     target_file: str
     description: str

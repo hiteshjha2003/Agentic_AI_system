@@ -16,7 +16,12 @@ uploaded = st.file_uploader("Upload meeting audio", type=["wav","mp3"])
 participants = st.text_input("Participants (comma-separated)")
 
 if uploaded and st.button("Transcribe & Extract Actions"):
-    result = ingest_audio(uploaded.getvalue(), participants)
+    result = ingest_audio(
+        audio_bytes=uploaded.getvalue(), 
+        filename=uploaded.name,
+        content_type=uploaded.type,
+        participants=participants
+    )
     if result:
         success("Transcription complete")
         st.markdown("**Transcription**")

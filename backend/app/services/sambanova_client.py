@@ -111,6 +111,8 @@ Provide:
             input=text,
             encoding_format="float"
         )
+        if not response.data or len(response.data) == 0:
+            raise ValueError(f"SambaNova API returned no embedding data for input of length {len(text)}")
         return response.data[0].embedding
     
     async def create_code_embedding(self, code: str, context: str = "") -> List[float]:
@@ -137,15 +139,29 @@ Provide:
         Generate executable actions using function calling.
         """
         
-        system_prompt = f"""You are a senior software engineer performing {analysis_type}.
-Analyze the provided code context and generate specific, actionable fixes.
+        goal_instructions = {
+            "explain": "Focus on clarity, architecture, and purpose. Explain WHAT the code does and WHY.",
+            "debug": "Identify the root cause of errors, potential edge cases, and crash risks. Be precise about the bug.",
+            "refactor": "Focus on performance, readability, and best practices. Suggest cleaner, faster, or more idiomatic code.",
+            "review": "Perform a thorough PR-style review. Look for security, style, and correctness issues."
+        }
+        instruction = goal_instructions.get(analysis_type.lower(), "Provide high-quality technical analysis.")
 
-Available tools represent actions you can take. Choose appropriately:
+        system_prompt = f"""You are a senior software engineer performing {analysis_type}.
+{instruction}
+
+Strictly follow these rules:
+1. ONLY propose actions that directly address the user's query: '{query}'
+2. Use the provided code context to identify specific files and locations.
+3. If more context is needed to answer '{query}', use 'search_codebase'.
+4. Do NOT give generic advice. Be specific.
+
+Available tools:
 - edit_file: Modify existing code
-- create_file: Generate new files (tests, implementations)
+- create_file: Generate new files
 - run_test: Execute test commands
 - create_pr_comment: Add review comment
-- search_codebase: If you need more context"""
+- search_codebase: Search for more context"""
 
         messages = [
             {"role": "system", "content": system_prompt},
@@ -189,9 +205,27 @@ Available tools represent actions you can take. Choose appropriately:
         Yields: thought process → code suggestions → final summary
         """
         
-        system_prompt = f"""You are analyzing code for {analysis_type}.
-Think step by step, then provide your final recommendation.
-Use markdown code blocks for any code."""
+        goal_prompts = {
+            "explain": "Explain the code architecture, logic flow, and purpose. Use analogies for complex parts.",
+            "debug": "Analyze the potential bugs, trace the error path, and explain WHY it is failing.",
+            "refactor": "Suggest specific optimizations for performance, memory, or readability.",
+            "review": "Critique the code for best practices, naming, and security."
+        }
+        specific_goal = goal_prompts.get(analysis_type.lower(), "Analyze the code thoroughly.")
+
+        system_prompt = f"""You are an expert code analyst. Goal: {analysis_type}.
+{specific_goal}
+
+CRITICAL: 
+- Your response must specifically address: '{query}'
+- Use the provided context ONLY as a reference.
+- If the context does not contain enough information to answer '{query}', state exactly what is missing and suggest searching for specific terms.
+- Avoid generic summaries. Be technical and precise.
+
+Thinking Process:
+1. Identify the core components mentioned in '{query}'
+2. Match them against the provided context
+3. Provide a detailed, tailored analysis"""
 
         messages = [
             {"role": "system", "content": system_prompt},
@@ -224,17 +258,24 @@ Use markdown code blocks for any code."""
         Transcribe audio using SambaNova's Whisper-Large-v3.
         Returns transcription + detected language.
         """
-        # Wrap bytes in file-like object (required by OpenAI client)
-        from io import BytesIO
-        audio_file = BytesIO(audio_bytes)
+        import io
+        import os
+        
+        # Use a BytesIO object with a name attribute, which AsyncOpenAI often handles better
+        audio_file = io.BytesIO(audio_bytes)
         audio_file.name = filename
-
+        
+        # Determine MIME type correctly
+        ext = os.path.splitext(filename)[1].lower()
+        mime_type = "audio/mpeg" if ext == ".mp3" else "audio/wav" if ext == ".wav" else "application/octet-stream"
+        
+        # 3-tuple (filename, file_object, content_type) is the most robust format
         response = await self.client.audio.transcriptions.create(
             model="Whisper-Large-v3",
-            file=audio_file,
-            language=language,           # e.g. "en"
+            file=(filename, audio_file, mime_type),
+            language=language,
             prompt=prompt or "",
-            response_format="json",      # or "verbose_json" for timestamps
+            response_format="json"
         )
 
         return {
