@@ -1,0 +1,19 @@
+# backend/docker-compose.yml
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - SAMBANOVA_API_KEY=${SAMBANOVA_API_KEY}
+      - SAMBANOVA_BASE_URL=https://api.sambanova.ai/v1
+      - CHROMA_PERSIST_DIR=/data/chroma
+    volumes:
+      - chroma_data:/data/chroma
+      - ./repos:/repos  # Mount code repositories
+    restart: unless-stopped
+
+volumes:
+  chroma_data:

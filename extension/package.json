@@ -1,0 +1,79 @@
+{
+  "name": "sambanova-code-agent",
+  "displayName": "SambaNova Code Agent",
+  "description": "Real-time multimodal code review & debug powered by SambaNova",
+  "version": "0.1.0",
+  "publisher": "your-github-username",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "Debuggers"
+  ],
+  "activationEvents": [
+    "onCommand:sambanova.analyzeSelection",
+    "onCommand:sambanova.analyzeScreenshot",
+    "onLanguage:python",
+    "onLanguage:javascript",
+    "onLanguage:typescript"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sambanova.analyzeSelection",
+        "title": "SambaNova: Analyze Selected Code"
+      },
+      {
+        "command": "sambanova.analyzeScreenshot",
+        "title": "SambaNova: Analyze Screenshot / Error Image"
+      },
+      {
+        "command": "sambanova.openChat",
+        "title": "SambaNova: Open Agent Chat"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "sambanova.analyzeSelection",
+          "group": "z_commands"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "SambaNova Code Agent",
+      "properties": {
+        "sambanova.backendUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "Backend API base URL (without trailing slash)"
+        },
+        "sambanova.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key if your backend requires authentication"
+        },
+        "sambanova.workspaceId": {
+          "type": "string",
+          "default": "default",
+          "description": "Workspace / project identifier"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "20.x",
+    "typescript": "^5.4.5",
+    "vsce": "^2.15.0"
+  }
+}

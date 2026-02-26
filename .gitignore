@@ -1,0 +1,89 @@
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+env/
+venv/
+.venv/
+backend/env/
+frontend/env/
+
+# -------------------------
+# Environment Variables
+# -------------------------
+.env
+.env.*
+*.env
+
+# -------------------------
+# Streamlit
+# -------------------------
+.streamlit/
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/
+
+# -------------------------
+# OS Files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# VS Code
+# -------------------------
+.vscode/
+.history/
+
+# -------------------------
+# Node (VS Code Extension)
+# -------------------------
+node_modules/
+extension/node_modules/
+*.vsix
+dist/
+
+# -------------------------
+# ChromaDB / Vector DB
+# -------------------------
+chroma_db/
+*.sqlite3
+*.db
+
+# -------------------------
+# Uploaded / Temp Files
+# -------------------------
+uploads/
+tmp/
+temp/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.wav
+*.mp3
+
+# -------------------------
+# Jupyter
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# Docker
+# -------------------------
+*.tar
+*.gz

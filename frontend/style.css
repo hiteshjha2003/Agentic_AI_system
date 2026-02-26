@@ -1,0 +1,139 @@
+/* style.css - Enhanced Dark Theme for SambaNova Agent */
+
+/* === Root Variables === */
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --bg: #0f172a;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --surface: #1e293b;
+  --surface-hover: #334155;
+  --surface-active: #475569;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #475569;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --code-bg: #111827;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s ease;
+}
+
+/* === Global === */
+body, .stApp {
+  background: var(--bg-gradient) !important;
+  color: var(--text) !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  min-height: 100vh;
+}
+
+/* === Sidebar === */
+/* Enhanced Sidebar Polish */
+section[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+[data-testid="stSidebarNav"] a {
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease;
+  color: var(--text-muted) !important;
+}
+
+[data-testid="stSidebarNav"] a:hover,
+[data-testid="stSidebarNav"] a[aria-current="page"] {
+  background: var(--surface-hover) !important;
+  color: var(--primary-light) !important;
+  transform: translateX(4px);
+}
+
+/* === Buttons === */
+.stButton > button {
+  background: var(--primary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.stButton > button:hover {
+  background: var(--primary-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25) !important;
+}
+
+.stButton > button[kind="secondary"] {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+}
+
+.stButton > button[kind="secondary"]:hover {
+  background: var(--surface-hover) !important;
+}
+
+/* === Inputs === */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div > select {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  transition: var(--transition);
+}
+
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* === Cards / Containers === */
+.stContainer, .stExpander, [data-testid="stVerticalBlock"] > div {
+  background: var(--surface) !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.stContainer:hover, .stExpander:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+/* === Alerts === */
+.stAlert {
+  border-radius: 12px !important;
+  border: none !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.stSuccess { background: rgba(16, 185, 129, 0.15) !important; }
+.stError   { background: rgba(239, 68, 68, 0.15) !important; }
+.stInfo    { background: rgba(99, 102, 241, 0.15) !important; }
+
+/* === Code Blocks === */
+[data-testid="stMarkdownContainer"] pre,
+[data-testid="stMarkdownContainer"] code {
+  background: var(--code-bg) !important;
+  border-radius: 10px !important;
+  padding: 1rem !important;
+}
+
+/* === Animations (subtle) === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
