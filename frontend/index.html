@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SambaNova Code Agent - AI Multimodal Companion</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons for premium feel -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">SambaNova AI</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#" class="nav-item active" data-page="home">
+                    <i data-lucide="home"></i> Home
+                </a>
+                <a href="#" class="nav-item" data-page="analysis">
+                    <i data-lucide="layout-dashboard"></i> Analysis Dashboard
+                </a>
+                <a href="#" class="nav-item" data-page="code-analysis">
+                    <i data-lucide="search"></i> Code Analysis
+                </a>
+                <a href="#" class="nav-item" data-page="screenshot-analysis">
+                    <i data-lucide="camera"></i> Screenshot
+                </a>
+                <a href="#" class="nav-item" data-page="audio-transcription">
+                    <i data-lucide="mic"></i> Audio / Meeting
+                </a>
+                <a href="#" class="nav-item" data-page="actions-fixes">
+                    <i data-lucide="wrench"></i> Actions & Fixes
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <i data-lucide="settings"></i> Settings
+                </a>
+            </nav>
+
+            <div style="margin-top: auto; padding-top: 2rem;">
+                <div class="card" style="padding: 1rem; margin-bottom: 0; font-size: 0.85rem;">
+                    <span style="color: var(--text-dim);">Backend Status</span>
+                    <div id="connection-status" style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--success);"></div>
+                        <span>Connected</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <main class="main-content">
+            <div id="page-content">
+                <!-- Dynamic Content Loads Here -->
+                <div class="loader-container"
+                    style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Modules -->
+    <script src="js/api.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -17,7 +17,7 @@ from app.models.schemas import (
     AnalysisRequest, AnalysisResponse, SuggestedAction,
     IngestedContext, IngestionType, CodebaseIngestRequest
 )
-from app.api.routes import ingest
+from app.api.routes import ingest, actions
 
 
 # Global service instances
@@ -51,7 +51,17 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, specify the exact origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(ingest.router)
+app.include_router(actions.router)
 
 
 @app.post("/ingest/codebase")
