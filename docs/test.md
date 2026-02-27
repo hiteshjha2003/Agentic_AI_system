@@ -12,6 +12,7 @@
 - [Prerequisites](#prerequisites)
   - [General Requirements](#general-requirements)
   - [Backend-Specific](#backend-specific)
+  - [Frontend-Specific (Modern HTML/JS)](#frontend-specific-modern-htmljs)
 - [Installation](#installation)
   - [Backend Local Setup](#backend-local-setup)
   - [Frontend Local Setup](#frontend-local-setup)
@@ -26,20 +27,12 @@
 - [Testing the Server and Features](#testing-the-server-and-features)
   - [Using Swagger UI](#using-swagger-ui)
   - [Using the CLI Tester](#using-the-cli-tester)
-  - [Manual CURL/Postman Tests](#manual-curlpostman-tests)
 - [Usage Guide](#usage-guide)
-  - [Backend API Endpoints](#backend-api-endpoints)
-  - [WebSocket for Real-Time Streaming](#websocket-for-real-time-streaming)
-  - [Frontend Interface](#frontend-interface)
   - [Ingesting Data](#ingesting-data)
   - [Performing Analysis](#performing-analysis)
   - [Executing Actions](#executing-actions)
 - [Implementation Details](#implementation-details)
   - [Backend Implementation](#backend-implementation)
-  - [SambaNova Integration](#sambanova-integration)
-  - [Ingestion Services](#ingestion-services)
-  - [Analysis Engine](#analysis-engine)
-  - [Memory Layer](#memory-layer)
   - [Frontend Implementation](#frontend-implementation)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
@@ -61,7 +54,7 @@ The application features a **Modern Frontend** (HTML/CSS/JS) for a premium, resp
 - **Real-Time Streaming**: WebSocket support for live analysis updates.
 
 ## Architecture Overview
-The system follows a modular client-server architecture:
+The architecture is modular, separating the FastAPI backend from multiple frontend consumers.
 
 ### High-Level Diagram
 ```
@@ -128,10 +121,8 @@ sambanova-coder-agent/
 │   │   └── main.py                 # FastAPI Entry point
 │   ├── cli_test.py                 # CLI Verification tool
 │   ├── requirements.txt
-│   └── utils.py    
-|-- database/                       # Database json files
-|-- docs/                           # Documentation
-|-- frontend/                       # Modern HTML/JS UI
+│   └── utils.py                    # General utils
+├── frontend/                       # Modern HTML/JS UI
 │   ├── assets/                     # Media & Logos
 │   ├── js/                         # Logic Layer
 │   │   ├── pages/                  # Page-specific JS modules
@@ -168,6 +159,8 @@ sambanova-coder-agent/
 │   │   │   ├── session.py
 │   │   │   # Legacy Helper logic
 │   ├── main.py                     # Legacy Entry (Left for transition)
+├── database/                       # Grouped History (YYYY-MM-DD.json)
+├── chroma_db/                      # Vector DB persistence
 ├── pyproject.toml                  # Project Metadata
 ├── Dockerfile                      # Dockerfile
 ├── docker-compose.yml              # Docker Compose file 
@@ -237,84 +230,34 @@ streamlit run main.py
 
 ```
 
-### Frontend Local Setup
-Serve the modern frontend via any simple HTTP server:
-```bash
-cd frontend
-python3 -m http.server 8080
-```
-
-To run the legacy Streamlit interface:
-```bash
-cd streamlit_legacy
-streamlit run main.py
-```
-
 ## Configuration
 ### Environment Variables
 Configure your `.env` in the `backend/` directory:
-- `SAMBANOVA_API_KEY`: Your secret key. (https://cloud.sambanova.ai)
-- `CHROMA_PERSIST_DIR`: Path for vector storage.
+- `SAMBANOVA_API_KEY`: Your secret key.(cloud.sambanova.ai)
+- `CHROMA_PERSIST_DIR`: Path for vector storage (default: `./chroma_db`).
 - `PYTHONPATH`: Set to `./backend`.
 
 
-## Testing the Server and Features
-### Using Swagger UI
-Run backend, visit `http://localhost:8000/docs`. Test endpoints interactively.
-
-### Using the CLI Tester
-Navigate to `backend/`:
-```bash
-python cli_test.py health
-python cli_test.py upload-screenshot /path/to/image.png
-```
-
-### Manual CURL/Postman Tests
-**Health**: `curl http://localhost:8000/health`
-**Analyze**: 
-```bash
-curl -X POST http://localhost:8000/analyze -H "Content-Type: application/json" -d '{"query": "Explain this code", "analysis_type": "explain"}'
-```
 
 ## Usage Guide
-### Backend API Endpoints
-- `/health` (GET): Server status.
-- `/ingest/screenshot` (POST): Form-data file upload for vision analysis.
-- `/ingest/audio` (POST): Form-data file upload for transcription.
-- `/analyze` (POST): JSON request for code analysis.
-- `/actions/execute` (POST): JSON request to execute suggested changes.
-
-### WebSocket for Real-Time Streaming
-Connect to `ws://localhost:8000/ws` for streaming analysis chunks.
-
-### Frontend Interface
-- **Home**: Quick navigation and overview.
-- **Analysis**: Query code, view results, and export reports (MD/PDF).
-- **Screenshot**: Crop and ingest error images for AI troubleshooting.
-- **Audio**: Transcribe meeting audio and extract action items.
-- **Settings**: Configure API keys, backend URL, and themes.
+1. **Ingestion**: Use the "Screenshots" or "Audio" pages to feed context to the agent.
+2. **Analysis**: Enter code queries. The agent will retrieve relevant code from ChromaDB and provide a detailed analysis.
+3. **Actions**: Click suggested actions (Edit/Create/Test) to have the agent modify the codebase autonomously.
 
 ## Implementation Details
 ### Backend Implementation
-- **SambaNova Integration**: `services/sambanova_client.py` provides a unified async client with retry logic for Chat, Vision, and Embeddings.
-- **Ingestion Services**:
-    - **Audio**: `ingestion/audio.py` uses Whisper for transcription and extracts tasks.
-    - **Vision**: `ingestion/vision.py` leverages SambaNova Vision models for UI/error analysis.
-    - **Code**: `ingestion/code.py` uses Tree-Sitter for AST-based indexing.
-- **Analysis Engine**: Uses hybrid search (Semantic + Keyword) and SambaNova reasoning.
-- **Memory Layer**: `memory/vector_store.py` manages ChromaDB for code/conversation embeddings.
+- **SambaNova Client**: unified async client with retry logic for Chat, Vision, and Embeddings.
+- **History Management**: Automatically consolidates all entries into one file per date to reduce file system clutter.
+- **Action Generation**: Uses strict prompting and error handling to ensure AI-generated code edits are valid JSON.
 
 ### Frontend Implementation
-- **Modern UI**: Modular JS architecture with real-time WebSocket support for streaming responses.
-- **Legacy Streamlit**: Multi-page Python app with custom components for diff rendering and code viewing.
+- **Modular JS**: Follows a clean router-based architecture for smooth page transitions without reloads.
+- **WebSocket Integration**: Direct streaming support for real-time AI responses.
 
 ## Troubleshooting
-- **Import Errors**: Ensure `PYTHONPATH=.` is set when running the backend or Streamlit.
-- **JSON Errors**: Mitigated with improved error handling in `sambanova_client.py`.
-- **Backend Offline**: Check if `SAMBANOVA_API_KEY` is set correctly in `.env`.
+- **Import Errors**: Ensure `PYTHONPATH=.` is set when running the backend.
+- **JSONDecodeError**: This has been mitigated with improved error handling in `sambanova_client.py`.
+- **Database Path**: Ensure the root `database/` folder is writable; it is automatically created on first ingestion.
 
 ---
-## License
-MIT. See LICENSE.
-
 *Created with focus on Visual Excellence and Premium Architecture.*
