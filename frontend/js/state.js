@@ -4,10 +4,10 @@
  */
 
 const AppState = {
-    lastAnalysis: JSON.parse(localStorage.getItem('last_analysis')) || null,
+    lastAnalysis: null, // Reset on reload
     repoIngested: localStorage.getItem('repo_ingested') === 'true',
-    lastScreenshot: JSON.parse(localStorage.getItem('last_screenshot')) || null,
-    lastAudio: JSON.parse(localStorage.getItem('last_audio')) || null,
+    lastScreenshot: null, // Reset on reload
+    lastAudio: null, // Reset on reload
     settings: {
         backendUrl: localStorage.getItem('backend_url') || 'http://localhost:8000',
         workspaceId: localStorage.getItem('workspace_id') || 'default'

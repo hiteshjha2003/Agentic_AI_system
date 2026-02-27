@@ -251,6 +251,7 @@ const UI = {
                         <input type="text" id="settings-workspace" value="${AppState.settings.workspaceId}">
                     </div>
                     <button class="btn btn-primary" id="btn-save-settings" style="width:100%">Save Configuration</button>
+                    <button class="btn btn-secondary" id="btn-clear-history" style="width:100%; margin-top: 1rem; color: var(--error); border-color: var(--error);">Clear All History</button>
                 </div>
                 
                 <div class="card">
@@ -259,8 +260,40 @@ const UI = {
                         <p>OS: Mac</p>
                         <p>Core: FastAPI 0.100+</p>
                         <p>Analysis: SambaNova Cloud</p>
-                        <p>UI Version: 2.1 (Modular SPA)</p>
+                        <p>UI Version: 2.2 (History Support)</p>
                     </div>
+                </div>
+            </div>
+        `,
+        history: () => `
+            <header>
+                <h1>📜 Analysis History</h1>
+                <p class="subtitle">Search and retrieve all your past AI interactions.</p>
+            </header>
+
+            <div class="card" style="margin-bottom: 2rem;">
+                <div style="display:flex; gap:1.5rem; align-items:flex-end;">
+                    <div class="input-group" style="flex:2; margin:0">
+                        <label class="input-label">Search by Query or Title</label>
+                        <input type="text" id="history-search" placeholder="e.g. 'Authentication' or 'Error'">
+                    </div>
+                    <div class="input-group" style="flex:1; margin:0">
+                        <label class="input-label">Type</label>
+                        <select id="history-type-filter">
+                            <option value="all">All Types</option>
+                            <option value="code_analysis">Code Analysis</option>
+                            <option value="screenshot">Screenshots</option>
+                            <option value="audio">Audio</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary" id="btn-filter-history">Filter</button>
+                </div>
+            </div>
+
+            <div id="history-list-container">
+                <div class="card" style="text-align:center; padding:3rem">
+                    <div class="loader"></div>
+                    <p style="margin-top:1rem; color:var(--text-dim)">Loading history from server...</p>
                 </div>
             </div>
         `
@@ -373,7 +406,48 @@ const UI = {
                 <p style="color:var(--text-dim)">Run a code analysis to get suggested improvements.</p>
                 <button class="btn btn-secondary" onclick="App.navigate('code-analysis')" style="margin-top:1.5rem">Go to Code Analysis</button>
             </div>
-        `
+        `,
+
+        historyList: (entries) => {
+            if (!entries || entries.length === 0) return `
+                <div class="card" style="text-align:center; padding:4rem">
+                    <i data-lucide="archive" style="width:48px; height:48px; color:var(--text-dim); margin-bottom:1rem"></i>
+                    <h3>History is empty</h3>
+                    <p style="color:var(--text-dim)">Your past analyses will appear here once you start using the agent.</p>
+                </div>
+            `;
+            return `
+                <div style="display:flex; flex-direction:column; gap:1rem">
+                    ${entries.map(entry => UI.subTemplates.historyItem(entry)).join('')}
+                </div>
+            `;
+        },
+
+        historyItem: (entry) => {
+            const date = new Date(entry.timestamp).toLocaleString();
+            const iconMapping = {
+                'code_analysis': 'search',
+                'screenshot': 'camera',
+                'audio': 'mic'
+            };
+            const icon = iconMapping[entry.type] || 'file-text';
+            const title = entry.query || "No Query Provided";
+
+            return `
+                <div class="card history-item" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; border: 1px solid var(--border-subtle); transition: transform 0.2s;">
+                    <div style="display:flex; gap:1.5rem; align-items:center">
+                        <div style="width:48px; height:48px; border-radius:12px; background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; color:var(--accent-primary)">
+                            <i data-lucide="${icon}"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin:0; font-size:1.1rem">${title}</h4>
+                            <p style="margin:0.25rem 0 0 0; font-size:0.85rem; color:var(--text-dim)">${date} • Type: ${entry.type.replace('_', ' ')}</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="Events.loadHistoryEntry('${entry.id}')">View Details</button>
+                </div>
+            `;
+        }
     }
 };
 

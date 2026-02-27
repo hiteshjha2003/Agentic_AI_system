@@ -106,6 +106,11 @@ Provide:
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def create_embedding(self, text: str) -> List[float]:
         """Generate embedding for code/text search."""
+        # Simple truncation to avoid API limits (approx 8k tokens)
+        MAX_CHARS = 12000 
+        if len(text) > MAX_CHARS:
+            text = text[:MAX_CHARS] + "..."
+            
         response = await self.client.embeddings.create(
             model=self.models["embedding"],
             input=text,

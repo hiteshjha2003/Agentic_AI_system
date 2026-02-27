@@ -31,6 +31,9 @@ const Events = {
             case 'settings':
                 this.bindSettings();
                 break;
+            case 'history':
+                this.bindHistory();
+                break;
         }
     },
 
@@ -178,6 +181,64 @@ const Events = {
         });
     },
 
+    async bindHistory() {
+        const listContainer = document.getElementById('history-list-container');
+        const searchInput = document.getElementById('history-search');
+        const typeFilter = document.getElementById('history-type-filter');
+        const btnFilter = document.getElementById('btn-filter-history');
+
+        let allEntries = [];
+
+        const renderFiltered = () => {
+            if (!listContainer) return;
+            const query = searchInput?.value.toLowerCase() || "";
+            const type = typeFilter?.value || "all";
+
+            const filtered = allEntries.filter(e => {
+                const matchQuery = e.query.toLowerCase().includes(query);
+                const matchType = type === 'all' || e.type === type;
+                return matchQuery && matchType;
+            });
+
+            listContainer.innerHTML = UI.subTemplates.historyList(filtered);
+            if (window.lucide) lucide.createIcons();
+        };
+
+        try {
+            allEntries = await SambaAPI.getHistory();
+            renderFiltered();
+        } catch (e) {
+            if (listContainer) {
+                listContainer.innerHTML = `<div class="card" style="color:var(--error)">Failed to load history: ${e.message}</div>`;
+            }
+        }
+
+        btnFilter?.addEventListener('click', renderFiltered);
+        searchInput?.addEventListener('input', renderFiltered);
+    },
+
+    async loadHistoryEntry(entryId) {
+        try {
+            const history = await SambaAPI.getHistory();
+            const entry = history.find(e => e.id === entryId);
+            if (!entry) return alert("Entry not found");
+
+            // Load into state
+            if (entry.type === 'code_analysis') {
+                AppState.save('lastAnalysis', entry.data);
+                App.navigate('code-analysis');
+            } else if (entry.type === 'screenshot') {
+                AppState.save('lastScreenshot', entry.data);
+                App.navigate('screenshot-analysis');
+            } else if (entry.type === 'audio') {
+                AppState.save('lastAudio', entry.data);
+                App.navigate('audio-transcription');
+            }
+        } catch (e) {
+            alert("Failed to load history entry: " + e.message);
+        }
+    },
+
     bindSettings() {
         const btnSave = document.getElementById('btn-save-settings');
         btnSave?.addEventListener('click', () => {
@@ -186,6 +247,18 @@ const Events = {
             AppState.updateSettings(url, ws);
             alert("Settings saved! Reloading...");
             location.reload();
+        });
+
+        const btnClear = document.getElementById('btn-clear-history');
+        btnClear?.addEventListener('click', async () => {
+            if (!confirm("Are you sure you want to clear ALL history? This cannot be undone.")) return;
+            try {
+                await SambaAPI.clearHistory();
+                alert("History cleared!");
+                location.reload();
+            } catch (e) {
+                alert("Failed to clear history: " + e.message);
+            }
         });
     }
 };

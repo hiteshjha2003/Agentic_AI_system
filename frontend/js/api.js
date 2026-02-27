@@ -69,12 +69,21 @@ const client = {
         return this.request('/ingest/audio', 'POST', formData, true);
     },
 
-    // 5. Action Execution
+    // 5. Execution
     async executeActions(actions) {
-        return this.request('/actions/execute', 'POST', actions);
+        return this.request('/actions/execute', 'POST', { actions });
     },
 
-    // 6. Health Check
+    // 6. History
+    async getHistory() {
+        return this.request('/history', 'GET');
+    },
+
+    async clearHistory() {
+        return this.request('/history/clear', 'POST'); // Added for completeness
+    },
+
+    // 7. Health Check
     async checkHealth() {
         return this.request('/health');
     }

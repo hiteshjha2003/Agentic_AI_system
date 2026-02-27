@@ -13,6 +13,7 @@ from app.services.ingestion.audio_processor import AudioProcessor
 from app.services.ingestion.vision_processor import VisionProcessor
 from app.services.ingestion.code_ingester import CodeIngester
 from app.services.memory.vector_store import CodebaseVectorStore
+from app.services.history_manager import HistoryManager
 from app.models.schemas import (
     AnalysisRequest, AnalysisResponse, SuggestedAction,
     IngestedContext, IngestionType, CodebaseIngestRequest
@@ -27,29 +28,31 @@ services = {}
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Initialize and cleanup services."""
-    # Startup
+    settings = get_settings()
+    
+    # Initialize Core Services
     services["sambanova"] = SambaNovaOrchestrator()
-    services["audio"] = AudioProcessor()
     services["vision"] = VisionProcessor()
-    services["code_ingester"] = CodeIngester()
-    services["vector_store"] = CodebaseVectorStore()
+    services["audio"] = AudioProcessor()
+    services["history"] = HistoryManager()
     
-    # Populate route service registries to avoid circular imports
-    ingest.services.update(services)
+    # Vector DB
+    vector_store = CodebaseVectorStore()
+    services["vector_store"] = vector_store
     
-    print("🚀 SambaNova Code Agent backend initialized")
+    # Ingester
+    services["ingester"] = CodeIngester()
+    
+    # Register services with routes
+    ingest.services = services
+    actions.services = services
+    
+    print("✅ [Core] All services initialized")
     yield
-    
-    # Cleanup
-    print("👋 Shutting down...")
+    print("👋 [Core] Cleanup complete")
 
 
-app = FastAPI(
-    title="SambaNova Code Agent",
-    description="Multimodal code review and debug agent",
-    version="1.0.0",
-    lifespan=lifespan
-)
+app = FastAPI(title="SambaNova Code Agent API", lifespan=lifespan)
 
 # Enable CORS
 app.add_middleware(
@@ -63,6 +66,16 @@ app.add_middleware(
 app.include_router(ingest.router)
 app.include_router(actions.router)
 
+@app.get("/history")
+async def get_history():
+    """Retrieve analysis history."""
+    return services["history"].get_all()
+
+@app.post("/history/clear")
+async def clear_history():
+    """Clear analysis history."""
+    services["history"].clear()
+    return {"status": "cleared"}
 
 @app.post("/ingest/codebase")
 async def ingest_codebase(
@@ -87,9 +100,8 @@ async def _ingest_codebase_task(repo_path: str, workspace_id: str):
     """Background task for codebase ingestion."""
     chunks = []
     
-    async for chunk in services["code_ingester"].ingest_repository(repo_path):
+    async for chunk in services["ingester"].ingest_repository(repo_path):
         if chunk.get("type") == "error":
-            print(f"Error processing {chunk['file_path']}: {chunk['error']}")
             continue
         chunks.append(chunk)
         
@@ -127,9 +139,6 @@ async def analyze(request: AnalysisRequest, workspace_id: str = "default"):
     )
     
     # 2. Generate analysis with SambaNova
-    if request.stream:
-        # Handled by WebSocket
-        raise HTTPException(status_code=400, detail="Use /ws for streaming")
     
     # Non-streaming analysis
     analysis_text = ""
@@ -229,7 +238,7 @@ async def analyze(request: AnalysisRequest, workspace_id: str = "default"):
     
     execution_time = int((asyncio.get_event_loop().time() - start_time) * 1000)
     
-    return AnalysisResponse(
+    response = AnalysisResponse(
         request_id=str(uuid.uuid4()),
         summary=analysis_text[:500] + "...",
         detailed_analysis=analysis_text,
@@ -250,6 +259,11 @@ async def analyze(request: AnalysisRequest, workspace_id: str = "default"):
         ],
         execution_time_ms=execution_time
     )
+
+    # Save to history
+    services["history"].save_entry("code_analysis", response.dict(), query=request.query)
+    
+    return response
 
 
 # ═════════════════════════════════════════════════════════════════
@@ -344,6 +358,7 @@ async def websocket_endpoint(websocket: WebSocket):
             "type": "error",
             "content": str(e)
         })
+        print(f"WS Error: {e}")
 
 
 # ═════════════════════════════════════════════════════════════════
@@ -356,7 +371,8 @@ async def health():
         "status": "healthy",
         "services": {
             "sambanova": "connected",
-            "vector_store": "connected"
+            "vector_store": "connected",
+            "history": "active"
         }
     }
 

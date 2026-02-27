@@ -93,6 +93,12 @@ class CodeIngester:
                 if child.type in ('function_definition', 'class_definition'):
                     chunk_text = content[child.start_byte:child.end_byte]
                     
+                    # Secondary chunking for very large constructs
+                    if len(chunk_text) > 10000:
+                        sub_chunks = self._generic_chunking(chunk_text, file_path, chunk_size=100)
+                        chunks.extend(sub_chunks)
+                        continue
+
                     # Get function/class name
                     name_node = child.child_by_field_name('name')
                     name = content[name_node.start_byte:name_node.end_byte] if name_node else "unknown"

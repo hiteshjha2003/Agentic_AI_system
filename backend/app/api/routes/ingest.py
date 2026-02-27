@@ -54,12 +54,17 @@ async def ingest_screenshot(
         embedding = await services["sambanova"].create_embedding(content_str)
         # TODO: store ingested + embedding in vector DB
 
-    return {
+    res = {
         "id": str(uuid.uuid4()),
         "analysis": vision_result,
         "extracted_text": content_str,
         "status": "processed"
     }
+
+    # Save to history
+    services["history"].save_entry("screenshot", res, query=context)
+
+    return res
 
 @router.post("/audio")
 async def ingest_audio(
@@ -113,7 +118,7 @@ async def ingest_audio(
     if ingested.content:
         await services["sambanova"].create_embedding(ingested.content)
 
-    return {
+    res = {
         "id": ingested.id,
         "status": "processed",
         "analysis": audio_result,
@@ -121,3 +126,8 @@ async def ingest_audio(
         "action_items": audio_result.get("action_items"),
         "summary": audio_result.get("summary")
     }
+
+    # Save to history
+    services["history"].save_entry("audio", res, query=f"Meeting: {file.filename}")
+
+    return res
