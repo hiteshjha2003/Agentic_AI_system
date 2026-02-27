@@ -1,4 +1,4 @@
-# README.md: Real-Time Multimodal Code Review + Debug Agent
+# README.md: Real-Time Multimodel Code Review Agentic Platform
 
 ![SambaNova Code Agent Logo](https://via.placeholder.com/150?text=SN+Code+Agent)
 
