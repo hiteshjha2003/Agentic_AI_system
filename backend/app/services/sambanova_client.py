@@ -160,6 +160,7 @@ Strictly follow these rules:
 2. Use the provided code context to identify specific files and locations.
 3. If more context is needed to answer '{query}', use 'search_codebase'.
 4. Do NOT give generic advice. Be specific.
+5. CRITICAL: When using 'edit_file' or 'create_file', ensure the 'replacement' or 'content' string is valid JSON-safe text. If the code contains double quotes, they MUST be escaped if your output is being wrapped in JSON, but usually the provider handles this – HOWEVER, if you see 'JSONDecodeError', it means you are likely nesting quotes incorrectly. Prefer single quotes for internal strings if possible, or ensure high-quality escaping.
 
 Available tools:
 - edit_file: Modify existing code
@@ -173,14 +174,21 @@ Available tools:
             {"role": "user", "content": self._format_context(relevant_code, query)}
         ]
         
-        response = await self.client.chat.completions.create(
-            model=self.models["chat"],
-            messages=messages,
-            tools=available_tools,
-            tool_choice="auto",
-            max_tokens=self.settings.MAX_TOKENS,
-            temperature=self.settings.TEMPERATURE
-        )
+        try:
+            response = await self.client.chat.completions.create(
+                model=self.models["chat"],
+                messages=messages,
+                tools=available_tools,
+                tool_choice="auto",
+                max_tokens=self.settings.MAX_TOKENS,
+                temperature=self.settings.TEMPERATURE
+            )
+        except openai.BadRequestError as e:
+            print(f"⚠️ [SambaNova] Action generation failed (likely JSON invalid): {e}")
+            return []
+        except Exception as e:
+            print(f"❌ [SambaNova] Unexpected error in generate_actions: {e}")
+            return []
         
         message = response.choices[0].message
         

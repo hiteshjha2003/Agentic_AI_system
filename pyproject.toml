@@ -38,6 +38,9 @@ packages = ["app"]
 [tool.pyright]
 include = ["backend"]
 extraPaths = ["backend"]
+executionEnvironments = [
+  { root = "backend" }
+]
 venvPath = "."
 venv = "env"
 

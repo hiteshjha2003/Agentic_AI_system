@@ -1,0 +1,110 @@
+[
+  {
+    "id": "e342d83a-f197-4810-aba0-41b814d45586",
+    "type": "code_analysis",
+    "timestamp": "2026-02-27T04:51:48.334311",
+    "query": "Explain how many files are there in code",
+    "data": {
+      "request_id": "e342d83a-f197-4810-aba0-41b814d45586",
+      "summary": "Based on the provided code context, it appears that there are multiple files involved in the code. However, the exact number of files is not explicitly stated.\n\nTo determine the number of files, we need to analyze the code structure and identify the different files mentioned in the context.\n\nHere's a breakdown of the files mentioned in the context:\n\n1. `package.json` (Context 1)\n2. `schemas.py` (Context 2)\n3. `app/models/schemas.py` (Context 3)\n4. `app/services/ingestion/code_ingester.py` (Conte...",
+      "detailed_analysis": "Based on the provided code context, it appears that there are multiple files involved in the code. However, the exact number of files is not explicitly stated.\n\nTo determine the number of files, we need to analyze the code structure and identify the different files mentioned in the context.\n\nHere's a breakdown of the files mentioned in the context:\n\n1. `package.json` (Context 1)\n2. `schemas.py` (Context 2)\n3. `app/models/schemas.py` (Context 3)\n4. `app/services/ingestion/code_ingester.py` (Context 4)\n5. `app/main.py` (Context 5)\n\nAdditionally, there are references to other files, such as:\n\n* `extension.js` (mentioned in `package.json`)\n* `tree-sitter grammars` (mentioned in `code_ingester.py`)\n* `node_modules` (mentioned in `code_ingester.py`)\n* `dist` and `build` directories (mentioned in `code_ingester.py`)\n\nHowever, these files are not explicitly mentioned as separate files in the context.\n\nBased on this analysis, it appears that there are at least 5 distinct files involved in the code:\n\n1. `package.json`\n2. `schemas.py`\n3. `app/models/schemas.py`\n4. `app/services/ingestion/code_ingester.py`\n5. `app/main.py`\n\nHowever, the exact number of files may be higher, as there are references to other files and directories that are not explicitly mentioned as separate files in the context.\n\nTo determine the exact number of files, we would need to search for specific terms, such as:\n\n* `file_path` or `file_path` attributes in the code\n* `import` statements or `from` clauses that reference other files\n* `open` or `read` functions that operate on specific files\n\nWithout more information, it is difficult to provide an exact count of the number of files involved in the code.",
+      "relevant_contexts": [
+        {
+          "id": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json:138436fc686eab993541364ece669ac5",
+          "type": "code_snippet",
+          "source": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json",
+          "content": "File: backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json\nLines 46-81:\n        \"id\": \"package.json:5c0a269fc62907b867142e1deabee863\",\n        \"type\": \"code_snippet\",\n        \"source\": \"package.json\",\n        \"content\": \"File: package.json\\nLines 1-50:\\n{\\n  \\\"name\\\": \\\"sambanova-code-agent\\\",\\n  \\\"displayName\\\": \\\"SambaNova Code Agent\\\",\\n  \\\"description\\\": \\\"Real-time multimodal code review & debug powered by SambaNova\\\",\\n  \\\"version\\\": \\\"0.1.0\\\",\\n  \\\"publisher\\\": \\\"your-github-username\\\",\\n  \\\"engines\\\": {\\n    \\\"vscode\\\": \\\"^1.85.0\\\"\\n  },\\n  \\\"categories\\\": [\\n    \\\"Other\\\",\\n    \\\"Programming Languages\\\",\\n    \\\"Debuggers\\\"\\n  ],\\n  \\\"activationEvents\\\": [\\n    \\\"onCommand:sambanova.analyzeSelection\\\",\\n    \\\"onCommand:sambanova.analyzeScreenshot\\\",\\n    \\\"onLanguage:python\\\",\\n    \\\"onLanguage:javascript\\\",\\n    \\\"onLanguage:typescript\\\"\\n  ],\\n  \\\"main\\\": \\\"./out/extension.js\\\",\\n  \\\"contributes\\\": {\\n    \\\"commands\\\": [\\n      {\\n        \\\"command\\\": \\\"sambanova.analyzeSelection\\\",\\n        \\\"title\\\": \\\"SambaNova: Analyze Selected Code\\\"\\n      },\\n      {\\n        \\\"command\\\": \\\"sambanova.analyzeScreenshot\\\",\\n        \\\"title\\\": \\\"SambaNova: Analyze Screenshot / Error Image\\\"\\n      },\\n      {\\n        \\\"command\\\": \\\"sambanova.openChat\\\",\\n        \\\"title\\\": \\\"SambaNova: Open Agent Chat\\\"\\n      }\\n    ],\\n    \\\"menus\\\": {\\n      \\\"editor/context\\\": [\\n        {\\n          \\\"command\\\": \\\"sambanova.analyzeSelection\\\",\\n          \\\"group\\\": \\\"z_commands\\\"\\n        }\\n      ]\\n    },\\n    \\\"configuration\\\": {\\n      \\\"title\\\": \\\"SambaNova Code Agent\\\",\\n      \\\"properties\\\": {\\n        \\\"sambanova.backendUrl\\\": {\\n          \\\"type\\\": \\\"string\\\",\",\n        \"raw_data\": null,\n        \"metadata\": {\n          \"construct_type\": \"chunk\",\n          \"file_path\": \"package.json\",\n          \"language\": \"json\",\n          \"line_end\": 50,\n          \"line_start\": 1,\n          \"name\": \"\"\n        },\n        \"timestamp\": \"2026-02-27T04:39:32.236484\",\n        \"embedding_id\": null\n      }\n    ],\n    \"suggested_actions\": [\n      {\n        \"action_type\": \"search_codebase\",\n        \"target_file\": \"unknown\",\n        \"description\": \"\",\n        \"diff\": null,\n        \"new_content\": null,\n        \"reasoning\": \"No additional reasoning provided\",\n        \"confidence\": 0.85\n      }\n    ],\n    \"follow_up_questions\": [\n      \"Would you like me to generate a test case for this fix?\",\n      \"Should I check if this pattern exists in other files?\",\n      \"Can you provide the full error traceback?\"\n    ],\n    \"execution_time_ms\": 32072\n  }\n}",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "chunk",
+            "file_path": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json",
+            "language": "json",
+            "line_end": 81,
+            "line_start": 46,
+            "name": ""
+          },
+          "timestamp": "2026-02-27T04:51:48.334023",
+          "embedding_id": null
+        },
+        {
+          "id": "schemas.py:f9b2a2c56b00828f2c5e54df6650fa69",
+          "type": "code_snippet",
+          "source": "schemas.py",
+          "content": "File: schemas.py\n                        Class Definition: CodeLocation\n                        Docstring: \n                        Code:\n                        class CodeLocation(BaseModel):\n    file_path: str\n    line_start: int\n    line_end: int\n    git_commit: Optional[str] = None",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "class_definition",
+            "file_path": "schemas.py",
+            "language": "python",
+            "line_end": 27,
+            "line_start": 23,
+            "name": "CodeLocation"
+          },
+          "timestamp": "2026-02-27T04:51:48.334047",
+          "embedding_id": null
+        },
+        {
+          "id": "app/models/schemas.py:f9b2a2c56b00828f2c5e54df6650fa69",
+          "type": "code_snippet",
+          "source": "app/models/schemas.py",
+          "content": "File: app/models/schemas.py\n                        Class Definition: CodeLocation\n                        Docstring: \n                        Code:\n                        class CodeLocation(BaseModel):\n    file_path: str\n    line_start: int\n    line_end: int\n    git_commit: Optional[str] = None",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "class_definition",
+            "file_path": "app/models/schemas.py",
+            "language": "python",
+            "line_end": 27,
+            "line_start": 23,
+            "name": "CodeLocation"
+          },
+          "timestamp": "2026-02-27T04:51:48.334057",
+          "embedding_id": null
+        }
+      ],
+      "suggested_actions": [
+        {
+          "action_type": "edit",
+          "target_file": "app/services/ingestion/code_ingester.py",
+          "description": "",
+          "diff": "count = 0\nfor file_path in repo.rglob(\"*\"):\n    count += 1\nprint(f\"Found {count} files in the repository.\")",
+          "new_content": null,
+          "reasoning": "No additional reasoning provided",
+          "confidence": 0.85
+        }
+      ],
+      "follow_up_questions": [
+        "Would you like me to generate a test case for this fix?",
+        "Should I check if this pattern exists in other files?",
+        "Can you provide the full error traceback?"
+      ],
+      "execution_time_ms": 8945
+    }
+  },
+  {
+    "id": "045051_0b4b7f87",
+    "type": "daily_test_3",
+    "timestamp": "2026-02-27T04:50:51.697261",
+    "query": "N/A",
+    "data": {
+      "msg": "third entry"
+    }
+  },
+  {
+    "id": "045051_e0ba3a9a",
+    "type": "daily_test_2",
+    "timestamp": "2026-02-27T04:50:51.697050",
+    "query": "N/A",
+    "data": {
+      "msg": "second entry"
+    }
+  },
+  {
+    "id": "045051_1ddef3f6",
+    "type": "daily_test_1",
+    "timestamp": "2026-02-27T04:50:51.696328",
+    "query": "N/A",
+    "data": {
+      "msg": "first entry"
+    }
+  }
+]
