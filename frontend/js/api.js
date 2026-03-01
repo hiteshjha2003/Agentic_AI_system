@@ -3,7 +3,7 @@
  * Optimized Fetch-based client for SambaNova Code Agent Backend
  */
 
-const API_BASE_URL = localStorage.getItem('backend_url') || 'http://localhost:8000';
+const API_BASE_URL = localStorage.getItem('backend_url') || 'http://127.0.0.1:8000';
 
 const client = {
     async request(endpoint, method = 'GET', body = null, isFile = false) {

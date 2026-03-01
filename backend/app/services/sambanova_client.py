@@ -1,4 +1,5 @@
 # backend/app/services/sambanova_client.py
+import asyncio
 import openai
 import json
 import base64
@@ -19,12 +20,14 @@ class SambaNovaOrchestrator:
         self.settings = get_settings()
         self.client = openai.AsyncOpenAI(
             api_key=self.settings.SAMBANOVA_API_KEY,
-            base_url=self.settings.SAMBANOVA_BASE_URL,
+            base_url=self.settings.SAMBANOVA_BASE_URL.strip(), # Ensure no hidden spaces
             http_client=httpx.AsyncClient(
                 limits=httpx.Limits(max_keepalive_connections=20, max_connections=50),
-                timeout=httpx.Timeout(60.0, connect=10.0)
+                timeout=httpx.Timeout(60.0, connect=15.0) # Increased connect timeout
             )
         )
+        # Limit parallel API calls to prevent DNS/network exhaustion
+        self._semaphore = asyncio.Semaphore(10) 
         
         # Model routing based on task
         self.models = {
@@ -107,19 +110,25 @@ Provide:
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def create_embedding(self, text: str) -> List[float]:
         """Generate embedding for code/text search."""
-        # Simple truncation to avoid API limits (approx 8k tokens)
-        MAX_CHARS = 12000 
-        if len(text) > MAX_CHARS:
-            text = text[:MAX_CHARS] + "..."
-            
-        response = await self.client.embeddings.create(
-            model=self.models["embedding"],
-            input=text,
-            encoding_format="float"
-        )
-        if not response.data or len(response.data) == 0:
-            raise ValueError(f"SambaNova API returned no embedding data for input of length {len(text)}")
-        return response.data[0].embedding
+        async with self._semaphore:
+            try:
+                # Simple truncation to avoid API limits (approx 8k tokens)
+                MAX_CHARS = 12000 
+                if len(text) > MAX_CHARS:
+                    text = text[:MAX_CHARS] + "..."
+                    
+                response = await self.client.embeddings.create(
+                    model=self.models["embedding"],
+                    input=text,
+                    encoding_format="float"
+                )
+                if not response.data or len(response.data) == 0:
+                    raise ValueError(f"SambaNova API returned no embedding data for input of length {len(text)}")
+                return response.data[0].embedding
+            except Exception as e:
+                print(f"❌ [SambaNova] Embedding failed for URL: {self.settings.SAMBANOVA_BASE_URL}")
+                print(f"❌ [SambaNova] Error type: {type(e).__name__}, Detail: {str(e)}")
+                raise
     
     async def create_code_embedding(self, code: str, context: str = "") -> List[float]:
         """

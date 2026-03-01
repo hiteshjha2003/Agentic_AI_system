@@ -1,0 +1,86 @@
+[
+  {
+    "id": "9c1afedf-1820-45e0-9652-958077600007",
+    "type": "screenshot",
+    "timestamp": "2026-02-28T07:08:51.791548",
+    "query": "N/A",
+    "data": {
+      "id": "9c1afedf-1820-45e0-9652-958077600007",
+      "analysis": {
+        "status": "success",
+        "source": "ChatGPT Image Jan 28, 2026, 07_04_23 PM.png",
+        "vision_analysis": {
+          "extracted_text": [
+            "AI-Powered Voice Assistant for Medical Center",
+            "Administrative Tasks Only - Voice-First System",
+            "Telephony / VoIP Layer",
+            "SIP / VOIP Gateway",
+            "Call Routing",
+            "Human Escalation",
+            "Speech Processing",
+            "Speech-to-Text (STT)",
+            "Text-to-Speech (TTS)",
+            "Multilingual (FR / DE / EN)",
+            "Conversational AI Engine",
+            "Intent Detection",
+            "Dialogue & Slots",
+            "Escalation Logic",
+            "AI / NLP Logic",
+            "Backend & Integration",
+            "Calendar/CRM",
+            "Secure Data Storage",
+            "API Orchestration",
+            "APIs",
+            "GDPR / Swiss Compliance",
+            "Calendar / Scheduling System",
+            "Appointment Booking",
+            "Availability Check",
+            "Modify / Cancel",
+            "Patient Database",
+            "Fallback to Human",
+            "Live Agent",
+            "No Medical Advice",
+            "Language Detection (FR / DE / EN)",
+            "Secure Data Handling",
+            "Escalate When Needed"
+          ],
+          "detailed_explanation": "The diagram illustrates the architecture of an AI-Powered Voice Assistant for a Medical Center, focusing on administrative tasks. The system is divided into several layers: Telephony/VoIP Layer for call handling, Speech Processing for converting speech to text and vice versa, Conversational AI Engine for understanding and responding to patient inquiries, Backend & Integration for managing data and APIs, and Calendar/Scheduling System for appointment management. The system is designed to be multilingual and secure, with features like human escalation when needed and compliance with GDPR and Swiss regulations.",
+          "layout_description": "The diagram is structured as a flowchart, with different colored boxes representing various components of the system. Arrows indicate the flow of information between these components. The layout is clear and organized, making it easy to follow the process from patient call to appointment booking or escalation.",
+          "architectural_components": [
+            "Telephony / VoIP Layer",
+            "Speech Processing",
+            "Conversational AI Engine",
+            "Backend & Integration",
+            "Calendar / Scheduling System"
+          ],
+          "issue_type": "none",
+          "severity": "none",
+          "hypotheses": [
+            "The system may face challenges in accurately detecting patient intent due to the complexity of natural language.",
+            "Integration with existing medical center systems could be a potential technical hurdle."
+          ]
+        },
+        "combined_extracted_text": "['AI-Powered Voice Assistant for Medical Center', 'Administrative Tasks Only - Voice-First System', 'Telephony / VoIP Layer', 'SIP / VOIP Gateway', 'Call Routing', 'Human Escalation', 'Speech Processing', 'Speech-to-Text (STT)', 'Text-to-Speech (TTS)', 'Multilingual (FR / DE / EN)', 'Conversational AI Engine', 'Intent Detection', 'Dialogue & Slots', 'Escalation Logic', 'AI / NLP Logic', 'Backend & Integration', 'Calendar/CRM', 'Secure Data Storage', 'API Orchestration', 'APIs', 'GDPR / Swiss Compliance', 'Calendar / Scheduling System', 'Appointment Booking', 'Availability Check', 'Modify / Cancel', 'Patient Database', 'Fallback to Human', 'Live Agent', 'No Medical Advice', 'Language Detection (FR / DE / EN)', 'Secure Data Handling', 'Escalate When Needed']",
+        "detailed_explanation": "The diagram illustrates the architecture of an AI-Powered Voice Assistant for a Medical Center, focusing on administrative tasks. The system is divided into several layers: Telephony/VoIP Layer for call handling, Speech Processing for converting speech to text and vice versa, Conversational AI Engine for understanding and responding to patient inquiries, Backend & Integration for managing data and APIs, and Calendar/Scheduling System for appointment management. The system is designed to be multilingual and secure, with features like human escalation when needed and compliance with GDPR and Swiss regulations.",
+        "architectural_components": [
+          "Telephony / VoIP Layer",
+          "Speech Processing",
+          "Conversational AI Engine",
+          "Backend & Integration",
+          "Calendar / Scheduling System"
+        ],
+        "issue_classification": {
+          "type": "none",
+          "severity": "none"
+        },
+        "hypotheses": [
+          "The system may face challenges in accurately detecting patient intent due to the complexity of natural language.",
+          "Integration with existing medical center systems could be a potential technical hurdle."
+        ],
+        "bytes_size": 678452
+      },
+      "extracted_text": "['AI-Powered Voice Assistant for Medical Center', 'Administrative Tasks Only - Voice-First System', 'Telephony / VoIP Layer', 'SIP / VOIP Gateway', 'Call Routing', 'Human Escalation', 'Speech Processing', 'Speech-to-Text (STT)', 'Text-to-Speech (TTS)', 'Multilingual (FR / DE / EN)', 'Conversational AI Engine', 'Intent Detection', 'Dialogue & Slots', 'Escalation Logic', 'AI / NLP Logic', 'Backend & Integration', 'Calendar/CRM', 'Secure Data Storage', 'API Orchestration', 'APIs', 'GDPR / Swiss Compliance', 'Calendar / Scheduling System', 'Appointment Booking', 'Availability Check', 'Modify / Cancel', 'Patient Database', 'Fallback to Human', 'Live Agent', 'No Medical Advice', 'Language Detection (FR / DE / EN)', 'Secure Data Handling', 'Escalate When Needed']",
+      "status": "processed"
+    }
+  }
+]
