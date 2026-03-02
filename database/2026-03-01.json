@@ -1,5 +1,251 @@
 [
   {
+    "id": "2e3c4376-8f4a-49b9-83ab-b7edf2b4de16",
+    "type": "screenshot",
+    "timestamp": "2026-03-01T03:55:11.183493",
+    "query": "N/A",
+    "data": {
+      "id": "2e3c4376-8f4a-49b9-83ab-b7edf2b4de16",
+      "analysis": {
+        "status": "success",
+        "source": "ChatGPT Image Jan 28, 2026, 07_04_23 PM.png",
+        "vision_analysis": {
+          "extracted_text": [
+            "AI-Powered Voice Assistant for Medical Center",
+            "Administrative Tasks Only - Voice-First System",
+            "Telephony / VoIP Layer",
+            "SIP / VOIP Gateway",
+            "Call Routing",
+            "Human Escalation",
+            "Speech Processing",
+            "Speech-to-Text (STT)",
+            "Text-to-Speech (TTS)",
+            "Multilingual (FR / DE / EN)",
+            "Conversational AI Engine",
+            "Intent Detection",
+            "Dialogue & Slots",
+            "Escalation Logic",
+            "AI / NLP Logic",
+            "Backend & Integration",
+            "Calendar/CRM",
+            "Secure Data Storage",
+            "API Orchestration",
+            "APIs",
+            "GDPR / Swiss Compliance",
+            "Calendar / Scheduling System",
+            "Appointment Booking",
+            "Availability Check",
+            "Modify / Cancel",
+            "Patient Database",
+            "Fallback to Human",
+            "Live Agent",
+            "No Medical Advice",
+            "Language Detection (FR / DE / EN)",
+            "Secure Data Handling",
+            "Escalate When Needed"
+          ],
+          "detailed_explanation": "The diagram illustrates the architecture of an AI-Powered Voice Assistant for a Medical Center, focusing on administrative tasks. The system is divided into several layers: Telephony/VoIP Layer for call management, Speech Processing for converting speech to text and vice versa, Conversational AI Engine for understanding and responding to patient inquiries, Backend & Integration for interacting with the medical center's systems, and Calendar/Scheduling System for managing appointments. The flow begins with a patient call, which is processed through the Telephony/VoIP Layer and then passed to the Speech Processing layer for transcription. The Conversational AI Engine interprets the patient's intent and responds accordingly. If necessary, the call is escalated to a human agent. The system interacts with the Calendar/Scheduling System for appointment management and with the Backend & Integration layer for data storage and API orchestration, ensuring GDPR and Swiss compliance.",
+          "layout_description": "The diagram is structured as a flowchart, with different colored boxes representing various components of the AI-Powered Voice Assistant. Arrows indicate the flow of information between these components. The layout is linear, starting from the patient call on the left and progressing to the right through different layers of processing and integration. Key elements include icons for telephony, speech processing, AI engine, backend integration, and calendar/scheduling system.",
+          "architectural_components": [
+            "Telephony/VoIP Layer",
+            "Speech Processing Layer",
+            "Conversational AI Engine",
+            "Backend & Integration Layer",
+            "Calendar/Scheduling System"
+          ],
+          "issue_type": "none",
+          "severity": "none",
+          "hypotheses": [
+            "Potential issues could arise from integration challenges with existing medical center systems.",
+            "Speech recognition accuracy might vary across different languages and dialects."
+          ]
+        },
+        "combined_extracted_text": "['AI-Powered Voice Assistant for Medical Center', 'Administrative Tasks Only - Voice-First System', 'Telephony / VoIP Layer', 'SIP / VOIP Gateway', 'Call Routing', 'Human Escalation', 'Speech Processing', 'Speech-to-Text (STT)', 'Text-to-Speech (TTS)', 'Multilingual (FR / DE / EN)', 'Conversational AI Engine', 'Intent Detection', 'Dialogue & Slots', 'Escalation Logic', 'AI / NLP Logic', 'Backend & Integration', 'Calendar/CRM', 'Secure Data Storage', 'API Orchestration', 'APIs', 'GDPR / Swiss Compliance', 'Calendar / Scheduling System', 'Appointment Booking', 'Availability Check', 'Modify / Cancel', 'Patient Database', 'Fallback to Human', 'Live Agent', 'No Medical Advice', 'Language Detection (FR / DE / EN)', 'Secure Data Handling', 'Escalate When Needed']",
+        "detailed_explanation": "The diagram illustrates the architecture of an AI-Powered Voice Assistant for a Medical Center, focusing on administrative tasks. The system is divided into several layers: Telephony/VoIP Layer for call management, Speech Processing for converting speech to text and vice versa, Conversational AI Engine for understanding and responding to patient inquiries, Backend & Integration for interacting with the medical center's systems, and Calendar/Scheduling System for managing appointments. The flow begins with a patient call, which is processed through the Telephony/VoIP Layer and then passed to the Speech Processing layer for transcription. The Conversational AI Engine interprets the patient's intent and responds accordingly. If necessary, the call is escalated to a human agent. The system interacts with the Calendar/Scheduling System for appointment management and with the Backend & Integration layer for data storage and API orchestration, ensuring GDPR and Swiss compliance.",
+        "architectural_components": [
+          "Telephony/VoIP Layer",
+          "Speech Processing Layer",
+          "Conversational AI Engine",
+          "Backend & Integration Layer",
+          "Calendar/Scheduling System"
+        ],
+        "issue_classification": {
+          "type": "none",
+          "severity": "none"
+        },
+        "hypotheses": [
+          "Potential issues could arise from integration challenges with existing medical center systems.",
+          "Speech recognition accuracy might vary across different languages and dialects."
+        ],
+        "bytes_size": 678452
+      },
+      "extracted_text": "['AI-Powered Voice Assistant for Medical Center', 'Administrative Tasks Only - Voice-First System', 'Telephony / VoIP Layer', 'SIP / VOIP Gateway', 'Call Routing', 'Human Escalation', 'Speech Processing', 'Speech-to-Text (STT)', 'Text-to-Speech (TTS)', 'Multilingual (FR / DE / EN)', 'Conversational AI Engine', 'Intent Detection', 'Dialogue & Slots', 'Escalation Logic', 'AI / NLP Logic', 'Backend & Integration', 'Calendar/CRM', 'Secure Data Storage', 'API Orchestration', 'APIs', 'GDPR / Swiss Compliance', 'Calendar / Scheduling System', 'Appointment Booking', 'Availability Check', 'Modify / Cancel', 'Patient Database', 'Fallback to Human', 'Live Agent', 'No Medical Advice', 'Language Detection (FR / DE / EN)', 'Secure Data Handling', 'Escalate When Needed']",
+      "status": "processed"
+    }
+  },
+  {
+    "id": "82d0cde0-ebbc-4b5c-8d01-142eb1df96a6",
+    "type": "code_analysis",
+    "timestamp": "2026-03-01T03:52:12.679181",
+    "query": "Explain directory structure of given path in ingested repository ",
+    "data": {
+      "request_id": "82d0cde0-ebbc-4b5c-8d01-142eb1df96a6",
+      "summary": "Based on the provided code context, I will explain the directory structure of the given path in the ingested repository.\n\n**Directory Structure Analysis**\n\nThe directory structure of the ingested repository is not explicitly defined in the provided code context. However, we can infer the structure based on the `ingest_repository` method in `code_ingester.py`.\n\nThe `ingest_repository` method takes a `repo_path` parameter, which is a string representing the path to the repository to be ingested. T...",
+      "detailed_analysis": "Based on the provided code context, I will explain the directory structure of the given path in the ingested repository.\n\n**Directory Structure Analysis**\n\nThe directory structure of the ingested repository is not explicitly defined in the provided code context. However, we can infer the structure based on the `ingest_repository` method in `code_ingester.py`.\n\nThe `ingest_repository` method takes a `repo_path` parameter, which is a string representing the path to the repository to be ingested. The method uses the `rglob` method of the `Path` object to recursively traverse the repository directory and its subdirectories.\n\nThe `rglob` method returns an iterator over the paths of all files and directories in the repository, starting from the root directory specified by `repo_path`. The iterator yields the paths as `Path` objects, which can be used to access the file or directory attributes.\n\n**Directory Structure**\n\nBased on the `ingest_repository` method, the directory structure of the ingested repository can be represented as follows:\n\n```\nrepo_path/\n    file1\n    file2\n    dir1/\n        file3\n        file4\n    dir2/\n        file5\n        file6\n    ...\n```\n\nIn this representation, `repo_path` is the root directory of the repository, and `file1`, `file2`, `dir1`, `dir2`, etc., are the files and directories within the repository.\n\n**Directory Traversal**\n\nThe `ingest_repository` method traverses the repository directory and its subdirectories using the `rglob` method. The method iterates over the paths of all files and directories in the repository, skipping any files or directories that match the ignore patterns specified in the `ignore_patterns` parameter.\n\n**Directory Structure Inference**\n\nBased on the `ingest_repository` method, we can infer that the directory structure of the ingested repository is a hierarchical structure, with files and directories organized in a tree-like fashion. The method traverses the repository directory and its subdirectories, processing each file and directory in the repository.\n\n**Missing Information**\n\nTo provide a more detailed analysis of the directory structure, we would need more information about the repository structure, such as:\n\n* The specific directory structure of the repository (e.g., a Git repository with a `.git` directory)\n* The types of files and directories within the repository (e.g., source code files, configuration files, binary files)\n* Any specific requirements or constraints for the directory structure (e.g., a specific directory hierarchy, file naming conventions)\n\nWithout this information, we can only provide a general analysis of the directory structure based on the `ingest_repository` method.",
+      "relevant_contexts": [
+        {
+          "id": "schemas.py:f76df78bf2c259e2ed9431c27bbe1082",
+          "type": "code_snippet",
+          "source": "schemas.py",
+          "content": "File: schemas.py\n                        Class Definition: CodebaseIngestRequest\n                        Docstring: \n                        Code:\n                        class CodebaseIngestRequest(BaseModel):\n    repo_path: str\n    workspace_id: str = \"default\"",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "class_definition",
+            "file_path": "schemas.py",
+            "language": "python",
+            "line_end": 41,
+            "line_start": 39,
+            "name": "CodebaseIngestRequest"
+          },
+          "timestamp": "2026-03-01T03:52:12.678704",
+          "embedding_id": null
+        },
+        {
+          "id": "app/services/ingestion/code_ingester.py:dd26e7c51dd247841d47cf4decd6b358",
+          "type": "code_snippet",
+          "source": "app/services/ingestion/code_ingester.py",
+          "content": "File: app/services/ingestion/code_ingester.py\n                        Class Definition: deIngester:\n\n                        Docstring: \"\n    Ingest entire codebases with AST parsing for intelligent chunking.\n    Optimized for retrieval-augmented generation.\n    \"\"\"\n\n\n                        Code:\n                        ass CodeIngester:\n    \"\"\"\n    Ingest entire codebases with AST parsing for intelligent chunking.\n    Optimized for retrieval-augmented generation.\n    \"\"\"\n\n    def __init__(self):\n        self.settings = get_settings()  # \u2190 ADD THIS LINE\n        self.parser = Parser(Language(tspython.language()))\n        self.supported_langs = {\n            '.py': tspython.language(),\n            # Add more tree-sitter grammars as needed\n        }\n\n    async def ingest_repository(\n        self,\n        repo_path: str,\n        ignore_patterns: List[str] = None\n    ) -> Generator[Dict[str, Any], None, None]:\n        \"\"\"\n        Stream-process repository for vector store ingestion.\n        Yields structured code chunks with metadata.\n        \"\"\"\n        ignore_patterns = ignore_patterns or [\n            'node_modules', '.git', '__pycache__', '.venv',\n            'dist', 'build', '*.min.js', '*.pyc'\n        ]\n\n        repo = Path(repo_path)\n\n        for file_path in repo.rglob(\"*\"):\n            # Skip ignored patterns\n            if any(p in str(file_path) for p in ignore_patterns):\n                continue\n\n            if not file_path.is_file():\n                continue\n\n            ext = file_path.suffix\n            if ext not in self.settings.SUPPORTED_EXTENSIONS:  # \u2190 Now safe\n                continue\n\n            # Process file\n            try:\n                chunks = self._process_file(file_path, repo_path)\n                for chunk in chunks:\n                    yield chunk\n            except Exception as e:\n                yield {\n                    \"type\": \"error\",\n                    \"file_path\": str(file_path),\n                    \"error\": str(e)\n                }\n    \n    def _process_file(\n        self, \n        file_path: Path,\n        repo_root: str\n    ) -> List[Dict[str, Any]]:\n        \"\"\"Parse single file into semantic chunks.\"\"\"\n        \n        content = file_path.read_text(encoding='utf-8', errors='ignore')\n        rel_path = str(file_path.relative_to(repo_root))\n        \n        # Language-specific parsing\n        if file_path.suffix == '.py':\n            return self._parse_python(content, rel_path)\n        else:\n            # Generic chunking for other languages\n            return self._generic_chunking(content, rel_path)\n    \n    def _parse_python(self, content: str, file_path: str) -> List[Dict[str, Any]]:\n        \"\"\"AST-based parsing for Python files.\"\"\"\n        \n        try:\n            tree = self.parser.parse(bytes(content, \"utf8\"))\n            root_node = tree.root_node\n            \n            chunks = []\n            \n            # Extract top-level constructs\n            for child in root_node.children:\n                if child.type in ('function_definition', 'class_definition'):\n                    chunk_text = content[child.start_byte:child.end_byte]\n                    \n                    # Secondary chunking for very large constructs\n                    if len(chunk_text) > 10000:\n                        sub_chunks = self._generic_chunking(chunk_text, file_path, chunk_size=100)\n                        chunks.extend(sub_chunks)\n                        continue\n\n                    # Get function/class name\n                    name_node = child.child_by_field_name('name')\n                    name = content[name_node.start_byte:name_node.end_byte] if name_node else \"unknown\"\n                    \n                    # Get docstring if exists\n                    docstring = self._extract_docstring(child, content)\n                    \n                    chunks.append({\n                        \"type\": \"code\",\n                        \"file_path\": file_path,\n                        \"content\": chunk_text,\n                        \"language\": \"python\",\n                        \"construct_type\": child.type,\n                        \"name\": name,\n                        \"docstring\": docstring,\n                        \"line_start\": child.start_point[0] + 1,\n                        \"line_end\": child.end_point[0] + 1,\n                        \"embedding_text\": f\"\"\"\n                        File: {file_path}\n                        {child.type.replace('_', ' ').title()}: {name}\n                        Docstring: {docstring}\n                        Code:\n                        {chunk_text}\n                        \"\"\".strip(),\n                        \"content_hash\": hashlib.md5(chunk_text.encode()).hexdigest()\n                    })\n            \n            return chunks\n            \n        except Exception as e:\n            # Fallback to generic chunking\n            return self._generic_chunking(content, file_path)\n    \n    def _extract_docstring(self, node, content: str) -> str:\n        \"\"\"Extract docstring from function/class node.\"\"\"\n        # Look for expression_statement containing string\n        for child in node.children:\n            if child.type == 'block':\n                for stmt in child.children:\n                    if stmt.type == 'expression_statement':\n                        string_node = stmt.children[0] if stmt.children else None\n                        if string_node and string_node.type in ('string', 'comment'):\n                            return content[string_node.start_byte:string_node.end_byte]\n        return \"\"\n    \n    def _generic_chunking(\n        self, \n        content: str, \n        file_path: str,\n        chunk_size: int = 50,\n        overlap: int = 5\n    ) -> List[Dict[str, Any]]:\n        \"\"\"Line-based chunking for non-Python files.\"\"\"\n        \n        lines = content.split('\\n')\n        chunks = []\n        \n        for i in range(0, len(lines), chunk_size - overlap):\n            chunk_lines = lines[i:i + chunk_size]\n            chunk_text = '\\n'.join(chunk_lines)\n            \n            chunks.append({\n                \"type\": \"code\",\n                \"file_path\": file_path,\n                \"content\": chunk_text,\n                \"language\": Path(file_path).suffix[1:],\n                \"construct_type\": \"chunk\",\n                \"line_start\": i + 1,\n                \"line_end\": min(i + chunk_size, len(lines)),\n                \"embedding_text\": f\"File: {file_path}\\nLines {i+1}-{min(i+chunk_size, len(lines))}:\\n{chunk_text}\",\n                \"content_hash\": hashlib.md5(chunk_text.encode()).hexdigest()\n            })\n        \n        return chunks",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "class_definition",
+            "file_path": "app/services/ingestion/code_ingester.py",
+            "language": "python",
+            "line_end": 175,
+            "line_start": 11,
+            "name": "deIngester:\n"
+          },
+          "timestamp": "2026-03-01T03:52:12.678733",
+          "embedding_id": null
+        },
+        {
+          "id": "app/models/schemas.py:f76df78bf2c259e2ed9431c27bbe1082",
+          "type": "code_snippet",
+          "source": "app/models/schemas.py",
+          "content": "File: app/models/schemas.py\n                        Class Definition: CodebaseIngestRequest\n                        Docstring: \n                        Code:\n                        class CodebaseIngestRequest(BaseModel):\n    repo_path: str\n    workspace_id: str = \"default\"",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "class_definition",
+            "file_path": "app/models/schemas.py",
+            "language": "python",
+            "line_end": 41,
+            "line_start": 39,
+            "name": "CodebaseIngestRequest"
+          },
+          "timestamp": "2026-03-01T03:52:12.678747",
+          "embedding_id": null
+        }
+      ],
+      "suggested_actions": [
+        {
+          "action_type": "edit",
+          "target_file": "app/services/ingestion/code_ingester.py",
+          "description": "Explain directory structure of given path in ingested repository",
+          "diff": "async def explain_directory_structure(self, repo_path: str) -> Generator[Dict[str, Any], None, None]:\n    repo = Path(repo_path)\n    for file_path in repo.rglob(\"*\"):\n        # Process file\n        yield {'file_path': str(file_path)}",
+          "new_content": null,
+          "reasoning": "No additional reasoning provided",
+          "confidence": 0.85
+        }
+      ],
+      "follow_up_questions": [
+        "Would you like me to generate a test case for this fix?",
+        "Should I check if this pattern exists in other files?",
+        "Can you provide the full error traceback?"
+      ],
+      "execution_time_ms": 3981
+    }
+  },
+  {
+    "id": "0a2d9777-99f3-48c3-ba2f-b1bb0222e528",
+    "type": "code_analysis",
+    "timestamp": "2026-03-01T03:50:21.448793",
+    "query": "Explain given directory structure in detail ",
+    "data": {
+      "request_id": "0a2d9777-99f3-48c3-ba2f-b1bb0222e528",
+      "summary": "Based on the provided code context, I will analyze the directory structure in detail.\n\n**Directory Structure:**\n\nThe directory structure appears to be a mix of backend and frontend code, with a focus on code analysis and extension development. The directory structure can be broken down into the following components:\n\n1. **backend**: This directory contains the backend code for the application.\n\t* **database**: This directory contains JSON files that store code analysis data.\n\t\t+ **7eeacc11-e802-...",
+      "detailed_analysis": "Based on the provided code context, I will analyze the directory structure in detail.\n\n**Directory Structure:**\n\nThe directory structure appears to be a mix of backend and frontend code, with a focus on code analysis and extension development. The directory structure can be broken down into the following components:\n\n1. **backend**: This directory contains the backend code for the application.\n\t* **database**: This directory contains JSON files that store code analysis data.\n\t\t+ **7eeacc11-e802-4479-a906-6a89af01d0ea.json**: This file contains code analysis data for a specific request.\n\t* **schemas**: This directory contains Python files that define schema classes.\n\t\t+ **schemas.py**: This file defines the `AnalysisType` class, which is an enumeration of different analysis types.\n\t\t+ **app/models/schemas.py**: This file defines the `AnalysisType` class, which is an enumeration of different analysis types.\n\t\t+ **schemas.py**: This file defines the `CodeLocation` class, which represents a code location with file path, line start, line end, and optional git commit.\n2. **extension**: This directory contains the extension code for the application.\n\t* **extension.ts**: This file contains the extension code, which is not provided in the context.\n\t* **getWebviewContent.ts**: This file contains the implementation of the `getWebviewContent` function, which is not provided in the context.\n\n**Directory Structure Analogy:**\n\nThe directory structure can be thought of as a hierarchical organization of code components, similar to a file system. The `backend` directory is like a root directory, containing subdirectories like `database` and `schemas`. The `database` directory is like a folder containing JSON files, while the `schemas` directory is like a folder containing Python files.\n\n**Directory Structure Purpose:**\n\nThe directory structure appears to be designed to support code analysis and extension development. The `backend` directory contains code that interacts with the database and defines schema classes, while the `extension` directory contains code that implements the extension functionality.\n\n**Directory Structure Logic Flow:**\n\nThe directory structure suggests a logic flow that involves the following steps:\n\n1. Code analysis data is stored in the `database` directory.\n2. The `schemas`backend` code interacts with the database to retrieve code analysis data.\n3. The `schemas` directory defines schema classes that are used to represent code analysis data.\n4. The `extension` code implements the extension functionality, which interacts with the `backend` code to retrieve code analysis data.\n\nOverall, the directory structure appears to be well-organized and designed to support code analysis and extension development. However, without more context, it is difficult to provide a more detailed analysis.",
+      "relevant_contexts": [
+        {
+          "id": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json:138436fc686eab993541364ece669ac5",
+          "type": "code_snippet",
+          "source": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json",
+          "content": "File: backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json\nLines 46-81:\n        \"id\": \"package.json:5c0a269fc62907b867142e1deabee863\",\n        \"type\": \"code_snippet\",\n        \"source\": \"package.json\",\n        \"content\": \"File: package.json\\nLines 1-50:\\n{\\n  \\\"name\\\": \\\"sambanova-code-agent\\\",\\n  \\\"displayName\\\": \\\"SambaNova Code Agent\\\",\\n  \\\"description\\\": \\\"Real-time multimodal code review & debug powered by SambaNova\\\",\\n  \\\"version\\\": \\\"0.1.0\\\",\\n  \\\"publisher\\\": \\\"your-github-username\\\",\\n  \\\"engines\\\": {\\n    \\\"vscode\\\": \\\"^1.85.0\\\"\\n  },\\n  \\\"categories\\\": [\\n    \\\"Other\\\",\\n    \\\"Programming Languages\\\",\\n    \\\"Debuggers\\\"\\n  ],\\n  \\\"activationEvents\\\": [\\n    \\\"onCommand:sambanova.analyzeSelection\\\",\\n    \\\"onCommand:sambanova.analyzeScreenshot\\\",\\n    \\\"onLanguage:python\\\",\\n    \\\"onLanguage:javascript\\\",\\n    \\\"onLanguage:typescript\\\"\\n  ],\\n  \\\"main\\\": \\\"./out/extension.js\\\",\\n  \\\"contributes\\\": {\\n    \\\"commands\\\": [\\n      {\\n        \\\"command\\\": \\\"sambanova.analyzeSelection\\\",\\n        \\\"title\\\": \\\"SambaNova: Analyze Selected Code\\\"\\n      },\\n      {\\n        \\\"command\\\": \\\"sambanova.analyzeScreenshot\\\",\\n        \\\"title\\\": \\\"SambaNova: Analyze Screenshot / Error Image\\\"\\n      },\\n      {\\n        \\\"command\\\": \\\"sambanova.openChat\\\",\\n        \\\"title\\\": \\\"SambaNova: Open Agent Chat\\\"\\n      }\\n    ],\\n    \\\"menus\\\": {\\n      \\\"editor/context\\\": [\\n        {\\n          \\\"command\\\": \\\"sambanova.analyzeSelection\\\",\\n          \\\"group\\\": \\\"z_commands\\\"\\n        }\\n      ]\\n    },\\n    \\\"configuration\\\": {\\n      \\\"title\\\": \\\"SambaNova Code Agent\\\",\\n      \\\"properties\\\": {\\n        \\\"sambanova.backendUrl\\\": {\\n          \\\"type\\\": \\\"string\\\",\",\n        \"raw_data\": null,\n        \"metadata\": {\n          \"construct_type\": \"chunk\",\n          \"file_path\": \"package.json\",\n          \"language\": \"json\",\n          \"line_end\": 50,\n          \"line_start\": 1,\n          \"name\": \"\"\n        },\n        \"timestamp\": \"2026-02-27T04:39:32.236484\",\n        \"embedding_id\": null\n      }\n    ],\n    \"suggested_actions\": [\n      {\n        \"action_type\": \"search_codebase\",\n        \"target_file\": \"unknown\",\n        \"description\": \"\",\n        \"diff\": null,\n        \"new_content\": null,\n        \"reasoning\": \"No additional reasoning provided\",\n        \"confidence\": 0.85\n      }\n    ],\n    \"follow_up_questions\": [\n      \"Would you like me to generate a test case for this fix?\",\n      \"Should I check if this pattern exists in other files?\",\n      \"Can you provide the full error traceback?\"\n    ],\n    \"execution_time_ms\": 32072\n  }\n}",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "chunk",
+            "file_path": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json",
+            "language": "json",
+            "line_end": 81,
+            "line_start": 46,
+            "name": ""
+          },
+          "timestamp": "2026-03-01T03:50:21.448025",
+          "embedding_id": null
+        },
+        {
+          "id": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json:0a2bc453059a7e0ec0432e7ffa605ae7",
+          "type": "code_snippet",
+          "source": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json",
+          "content": "File: backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json\nLines 1-50:\n{\n  \"id\": \"7eeacc11-e802-4479-a906-6a89af01d0ea\",\n  \"type\": \"code_analysis\",\n  \"timestamp\": \"2026-02-27T04:39:32.236890\",\n  \"query\": \"What is the issues ibn given extension folder\",\n  \"data\": {\n    \"request_id\": \"7eeacc11-e802-4479-a906-6a89af01d0ea\",\n    \"summary\": \"Based on the provided code context, I will analyze the issues related to the given extension folder.\\n\\n**Issue 1: Duplicate Code**\\n\\nThe `activate` function in `extension.ts` is duplicated in both `Context 1` and `Context 2`. This is likely a copy-paste error. The code should be refactored to remove the duplication.\\n\\n**Issue 2: Missing `getWebviewContent` Function**\\n\\nThe `getWebviewContent` function is imported in both `extension.ts` files, but its implementation is not provided. This function is ...\",\n    \"detailed_analysis\": \"Based on the provided code context, I will analyze the issues related to the given extension folder.\\n\\n**Issue 1: Duplicate Code**\\n\\nThe `activate` function in `extension.ts` is duplicated in both `Context 1` and `Context 2`. This is likely a copy-paste error. The code should be refactored to remove the duplication.\\n\\n**Issue 2: Missing `getWebviewContent` Function**\\n\\nThe `getWebviewContent` function is imported in both `extension.ts` files, but its implementation is not provided. This function is likely responsible for generating the HTML content for the webview panel. However, without its implementation, it's difficult to assess its correctness.\\n\\n**Issue 3: Missing `schemas.py` and `enums.py` Files**\\n\\nThe `schemas.py` and `enums.py` files are mentioned in the code context, but their contents are not provided. These files seem to contain enum definitions, which are used in the `IngestionType` class. However, without their implementation, it's difficult to assess their correctness.\\n\\n**Issue 4: Missing `package.json` File**\\n\\nThe `package.json` file is provided in `Context 3`, but it's missing some essential fields, such as `scripts`, `keywords`, and `license`. Additionally, the `engines` field is set to a specific version of `vscode`, which may not be compatible with future versions.\\n\\n**Issue 5: Missing `out/extension.js` File**\\n\\nThe `main` field in `package.json` is set to `./out/extension.js`, but this file is not provided in the code context. This file is likely generated by the extension's build process, but its contents are not provided.\\n\\n**Issue 6: Missing Security Considerations**\\n\\nThe extension uses the `vscode.window.createWebviewPanel` method to create a webview panel, which allows arbitrary JavaScript code to be executed. This poses a security risk if the extension is not properly validated and sanitized. The extension should implement proper security measures to prevent code injection attacks.\\n\\n**Issue 7: Missing Error Handling**\\n\\nThe extension does not seem to have any error handling mechanisms in place. This can lead to unexpected behavior and crashes if errors occur during execution.\\n\\n**Issue 8: Missing Code Organization**\\n\\nThe code is not well-organized, with functions and classes scattered across multiple files. This can make it difficult to maintain and extend the codebase.\\n\\nTo address these issues, I recommend the following:\\n\\n1. Refactor the code to remove duplication and improve organization.\\n2. Implement the `getWebviewContent` function and ensure it generates correct HTML content.\\n3. Provide the implementation of `schemas.py` and `enums.py` files.\\n4. Complete the `package.json` file with essential fields.\\n5. Provide the implementation of `out/extension.js` file.\\n6. Implement proper security measures to prevent code injection attacks.\\n7. Add error handling mechanisms to prevent unexpected behavior and crashes.\\n8. Improve code organization to make it easier to maintain and extend.\",\n    \"relevant_contexts\": [\n      {\n        \"id\": \"extension.ts:c2fe1fb189b494949254a4351158ed11\",\n        \"type\": \"code_snippet\",\n        \"source\": \"extension.ts\",\n        \"content\": \"File: extension.ts\\nLines 1-30:\\nimport * as vscode from 'vscode';\\nimport { getWebviewContent } from './webviewContent';\\n\\nexport function activate(context: vscode.ExtensionContext) {\\n  context.subscriptions.push(\\n    vscode.commands.registerCommand('sambanova.openAgent', () => {\\n      const panel = vscode.window.createWebviewPanel(\\n        'sambanovaAgent',\\n        'SambaNova Code Agent (stlite)',\\n        vscode.ViewColumn.Beside,\\n        {\\n          enableScripts: true,\\n          retainContextWhenHidden: true\\n        }\\n      );\\n\\n      panel.webview.html = getWebviewContent(context.extensionUri);\\n\\n      // Optional: pass current selection to webview\\n      const editor = vscode.window.activeTextEditor;\\n      if (editor) {\\n        const selection = editor.document.getText(editor.selection);\\n        panel.webview.postMessage({\\n          command: 'setSelection',\\n          code: selection\\n        });\\n      }\\n    })\\n  );\\n}\",\n        \"raw_data\": null,\n        \"metadata\": {\n          \"construct_type\": \"chunk\",\n          \"file_path\": \"extension.ts\",\n          \"language\": \"ts\",\n          \"line_end\": 30,\n          \"line_start\": 1,\n          \"name\": \"\"\n        },\n        \"timestamp\": \"2026-02-27T04:39:32.236467\",\n        \"embedding_id\": null\n      },\n      {\n        \"id\": \"src/extension.ts:c2fe1fb189b494949254a4351158ed11\",\n        \"type\": \"code_snippet\",\n        \"source\": \"src/extension.ts\",\n        \"content\": \"File: src/extension.ts\\nLines 1-30:\\nimport * as vscode from 'vscode';\\nimport { getWebviewContent } from './webviewContent';\\n\\nexport function activate(context: vscode.ExtensionContext) {\\n  context.subscriptions.push(\\n    vscode.commands.registerCommand('sambanova.openAgent', () => {\\n      const panel = vscode.window.createWebviewPanel(\\n        'sambanovaAgent',\\n        'SambaNova Code Agent (stlite)',\\n        vscode.ViewColumn.Beside,\\n        {\\n          enableScripts: true,\\n          retainContextWhenHidden: true\\n        }\\n      );\\n\\n      panel.webview.html = getWebviewContent(context.extensionUri);\\n\\n      // Optional: pass current selection to webview\\n      const editor = vscode.window.activeTextEditor;\\n      if (editor) {\\n        const selection = editor.document.getText(editor.selection);\\n        panel.webview.postMessage({\\n          command: 'setSelection',\\n          code: selection\\n        });\\n      }\\n    })\\n  );\\n}\",\n        \"raw_data\": null,\n        \"metadata\": {\n          \"construct_type\": \"chunk\",\n          \"file_path\": \"src/extension.ts\",\n          \"language\": \"ts\",\n          \"line_end\": 30,\n          \"line_start\": 1,\n          \"name\": \"\"\n        },\n        \"timestamp\": \"2026-02-27T04:39:32.236480\",\n        \"embedding_id\": null\n      },\n      {\n        \"id\": \"package.json:5c0a269fc62907b867142e1deabee863\",\n        \"type\": \"code_snippet\",\n        \"source\": \"package.json\",\n        \"content\": \"File: package.json\\nLines 1-50:\\n{\\n  \\\"name\\\": \\\"sambanova-code-agent\\\",\\n  \\\"displayName\\\": \\\"SambaNova Code Agent\\\",\\n  \\\"description\\\": \\\"Real-time multimodal code review & debug powered by SambaNova\\\",\\n  \\\"version\\\": \\\"0.1.0\\\",\\n  \\\"publisher\\\": \\\"your-github-username\\\",\\n  \\\"engines\\\": {\\n    \\\"vscode\\\": \\\"^1.85.0\\\"\\n  },\\n  \\\"categories\\\": [\\n    \\\"Other\\\",\\n    \\\"Programming Languages\\\",\\n    \\\"Debuggers\\\"\\n  ],\\n  \\\"activationEvents\\\": [\\n    \\\"onCommand:sambanova.analyzeSelection\\\",\\n    \\\"onCommand:sambanova.analyzeScreenshot\\\",\\n    \\\"onLanguage:python\\\",\\n    \\\"onLanguage:javascript\\\",\\n    \\\"onLanguage:typescript\\\"\\n  ],\\n  \\\"main\\\": \\\"./out/extension.js\\\",\\n  \\\"contributes\\\": {\\n    \\\"commands\\\": [\\n      {\\n        \\\"command\\\": \\\"sambanova.analyzeSelection\\\",\\n        \\\"title\\\": \\\"SambaNova: Analyze Selected Code\\\"\\n      },\\n      {\\n        \\\"command\\\": \\\"sambanova.analyzeScreenshot\\\",\\n        \\\"title\\\": \\\"SambaNova: Analyze Screenshot / Error Image\\\"\\n      },\\n      {\\n        \\\"command\\\": \\\"sambanova.openChat\\\",\\n        \\\"title\\\": \\\"SambaNova: Open Agent Chat\\\"\\n      }\\n    ],\\n    \\\"menus\\\": {\\n      \\\"editor/context\\\": [\\n        {\\n          \\\"command\\\": \\\"sambanova.analyzeSelection\\\",\\n          \\\"group\\\": \\\"z_commands\\\"\\n        }\\n      ]\\n    },\\n    \\\"configuration\\\": {\\n      \\\"title\\\": \\\"SambaNova Code Agent\\\",\\n      \\\"properties\\\": {\\n        \\\"sambanova.backendUrl\\\": {\\n          \\\"type\\\": \\\"string\\\",\",\n        \"raw_data\": null,",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "chunk",
+            "file_path": "backend/database/7eeacc11-e802-4479-a906-6a89af01d0ea.json",
+            "language": "json",
+            "line_end": 50,
+            "line_start": 1,
+            "name": ""
+          },
+          "timestamp": "2026-03-01T03:50:21.448054",
+          "embedding_id": null
+        },
+        {
+          "id": "schemas.py:e2923709ec8224ec7109b57db24137e0",
+          "type": "code_snippet",
+          "source": "schemas.py",
+          "content": "File: schemas.py\n                        Class Definition: AnalysisType\n                        Docstring: \n                        Code:\n                        class AnalysisType(str, Enum):\n    DEBUG = \"debug\"\n    REVIEW = \"review\"\n    REFACTOR = \"refactor\"\n    EXPLAIN = \"explain\"\n    TEST_GENERATE = \"test_generate\"",
+          "raw_data": null,
+          "metadata": {
+            "construct_type": "class_definition",
+            "file_path": "schemas.py",
+            "language": "python",
+            "line_end": 21,
+            "line_start": 16,
+            "name": "AnalysisType"
+          },
+          "timestamp": "2026-03-01T03:50:21.448070",
+          "embedding_id": null
+        }
+      ],
+      "suggested_actions": [
+        {
+          "action_type": "edit",
+          "target_file": "README.md",
+          "description": "Explain given directory structure in detail",
+          "diff": "## Directory Structure\n\nThe directory structure of this project is as follows:\n\n* `app/`: contains the main application code\n* `backend/backend/`: contains the backend API code\n* `schemas.py`: contains the schema definitions for the application\n* `enums.py`: contains the enum definitions for the application\n* `package.json`: contains the project metadata\n\nThis structure is designed to keep the code organized and easy to navigate.",
+          "new_content": null,
+          "reasoning": "No additional reasoning provided",
+          "confidence": 0.85
+        }
+      ],
+      "follow_up_questions": [
+        "Would you like me to generate a test case for this fix?",
+        "Should I check if this pattern exists in other files?",
+        "Can you provide the full error traceback?"
+      ],
+      "execution_time_ms": 4013
+    }
+  },
+  {
     "id": "e3f230ff-b9c1-4131-b81e-db5a1d0febf4",
     "type": "code_analysis",
     "timestamp": "2026-03-01T02:33:21.109690",
